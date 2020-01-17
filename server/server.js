@@ -38,7 +38,7 @@ const socket = require("./server-socket");
 // TODO change connection URL after setting up your team database
 const mongoConnectionURL = process.env.ATLAS_SRV;
 // TODO change database name to the name you chose
-const databaseName = foodforthought;
+const databaseName = "foodforthought";
 
 // connect to mongodb
 mongoose
