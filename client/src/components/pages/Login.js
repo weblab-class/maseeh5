@@ -1,10 +1,16 @@
 import React, { Component } from "react";
-import GoogleLogin, { GoogleLogout } from "react-google-login";
+import LoginCard from "../modules/LoginCard.js";
 
 import "../../utilities.css";
 import "./Login.css";
 
-const GOOGLE_CLIENT_ID = "391573326550-t7jv56qpqp8gg5j5ntuunn7akl20b58l.apps.googleusercontent.com";
+/**
+ * Login is a component for logging in to the app
+ *
+ * Proptypes
+ * @param {string} handleLogin
+ * @param {string} handleLogout
+ */
 
 class Login extends Component {
   constructor(props) {
@@ -12,27 +18,15 @@ class Login extends Component {
     this.state = {};
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    document.title = "Login Page";
+  }
 
   render() {
     return (
-      <>
-        {this.props.userId ? (
-          <GoogleLogout
-            clientId={GOOGLE_CLIENT_ID}
-            buttonText="Logout"
-            onLogoutSuccess={this.props.handleLogout}
-            onFailure={(err) => console.log(err)}
-          />
-        ) : (
-          <GoogleLogin
-            clientId={GOOGLE_CLIENT_ID}
-            buttonText="Login"
-            onSuccess={this.props.handleLogin}
-            onFailure={(err) => console.log(err)}
-          />
-        )}
-      </>
+      <div className="Login-background">
+        <LoginCard />
+      </div>
     );
   }
 }
