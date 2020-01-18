@@ -54,6 +54,11 @@ form {
   display: flex;
 }
 
+.u-flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
 .u-flexColumn {
   display: flex;
   flex-direction: column;

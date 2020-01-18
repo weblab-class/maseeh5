@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import LoginCard from "../modules/LoginCard.js";
+import LoginCard from "../modules/LoginCard";
+import Navbar from "../modules/Navbar";
 
 import "../../utilities.css";
 import "./Login.css";
@@ -25,6 +26,7 @@ class Login extends Component {
   render() {
     return (
       <div className="Login-background">
+        <Navbar userId={this.props.userId} handleLogout={this.props.handleLogout} />
         <LoginCard />
       </div>
     );
