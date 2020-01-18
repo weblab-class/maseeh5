@@ -43,9 +43,7 @@ body {
 
 button {
   font-family: "Source Sans Pro", sans-serif;
-  border: 0;
   border-radius: var(--s);
-  padding: var(--s) var(--m);
 }
 
 form {
