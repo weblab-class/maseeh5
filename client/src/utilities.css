@@ -20,9 +20,10 @@
 :root {
   --primary: #00a2d3;
   --secondary: #26547c;
-  --highlight: #ffd166;
+  --accent: #ffd166;
   --background: #f5f7f5;
-  --gray: #a1a1a1;
+  --lightgray: #bfbfbf;
+  --medgray: #a1a1a1;
 
   --xs: 4px;
   --s: 8px;
