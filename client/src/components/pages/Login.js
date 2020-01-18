@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
+import Navbar from "../modules/Navbar.js";
 
 import "../../utilities.css";
 import "./Login.css";
@@ -17,6 +18,7 @@ class Login extends Component {
   render() {
     return (
       <>
+        <Navbar userId={this.props.userId} handleLogout={this.props.handleLogout} />
         {this.props.userId ? (
           <GoogleLogout
             clientId={GOOGLE_CLIENT_ID}
