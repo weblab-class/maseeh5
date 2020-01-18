@@ -14,16 +14,15 @@
 * much after initial creation.
 */
 
-/* TODO: REPLACE WITH YOUR OWN FONT! */
-@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap");
 
 :root {
-  --primary: #396dff;
-  --primary--dim: #6987db;
-  --darkgrey: #d4d4d4;
-  --medgrey: #e0e0e0;
-  --grey: #f7f7f7;
-  --white: #fff;
+  --primary: #00a2d3;
+  --secondary: #26547c;
+  --highlight: #ffd166;
+  --background: #f5f7f5;
+  --gray: #a1a1a1;
 
   --xs: 4px;
   --s: 8px;
@@ -34,8 +33,12 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Mono", sans-serif;
   font-weight: 300;
+}
+
+button {
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 form {
