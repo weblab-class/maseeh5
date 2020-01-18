@@ -9,8 +9,7 @@ import "../../utilities.css";
  * LoginCard is a component for displaying informationa and logging in
  *
  * Proptypes
- * @param {string} handleLogin
- * @param {string} handleLogout
+ * @param {function} handleLogin
  */
 
 class LoginCard extends Component {

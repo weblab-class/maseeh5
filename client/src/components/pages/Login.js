@@ -9,8 +9,9 @@ import "./Login.css";
  * Login is a component for logging in to the app
  *
  * Proptypes
- * @param {string} handleLogin
- * @param {string} handleLogout
+ * @param {string} userId
+ * @param {function} handleLogin
+ * @param {function} handleLogout
  */
 
 class Login extends Component {
@@ -27,7 +28,7 @@ class Login extends Component {
     return (
       <div className="Login-background">
         <Navbar userId={this.props.userId} handleLogout={this.props.handleLogout} />
-        <LoginCard />
+        <LoginCard handleLogin={this.props.handleLogin} />
       </div>
     );
   }
