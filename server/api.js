@@ -11,6 +11,9 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
+const Venue = require("./models/venue");
+const FoodItem = require("./models/foodItem");
+const Review = require("./models/review");
 
 // import authentication library
 const auth = require("./auth");
@@ -36,6 +39,12 @@ router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
   if (req.user) socket.addUser(req.user, socket.getSocketFromSocketID(req.body.socketid));
   res.send({});
+});
+
+router.get("/user", (req, res) => {
+  User.findById(req.query.user_id).then((user) => {
+    res.send(user);
+  });
 });
 
 // |------------------------------|
