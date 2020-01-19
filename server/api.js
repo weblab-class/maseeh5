@@ -47,9 +47,106 @@ router.get("/user", (req, res) => {
   });
 });
 
-// |------------------------------|
-// | write your API methods below!|
-// |------------------------------|
+router.get("/venues", (req, res) => {
+  Venue.find({}).then((venues) => {
+    Promise.all(venues.map(async (venue) => {
+      try {
+        venue.rating = await calculateAverageVenueRating(venue._id);
+        return venue;
+      } catch (err) {
+        console.err(err);
+      }
+    })).then(venues => res.send(venues));
+  });
+});
+
+router.post("/venue", auth.ensureLoggedIn, (req, res) => {
+  const newVenue = new Venue({
+    name: req.body.name,
+  });
+
+  newVenue.save().then(async (venue) => {
+    try {
+      venue.rating = await calculateAverageVenueRating(venue._id);
+    } catch (err) {
+      console.err(err);
+    }
+    res.send(venue);
+  });
+});
+
+router.get("/foods", (req, res) => {
+  FoodItem.find({venue_id: req.query.venue_id}).then((foods) => {
+    Promise.all(foods.map(async (food) => {
+      try {
+        food.rating = await calculateAverageFoodRating(food._id);
+        return food;
+      } catch (err) {
+        console.err(err);
+      }
+    })).then(foods => res.send(foods));
+  });
+});
+
+router.post("/food", auth.ensureLoggedIn, (req, res) => {
+  const newFood = new FoodItem({
+    venue_id: req.body.venue_id,
+    name: req.body.name,
+  });
+
+  newFood.save().then(async (food) => {
+    try {
+      food.rating = await calculateAverageFoodRating(food._id);
+    } catch (err) {
+      console.err(err);
+    }
+    res.send(food);
+  });
+});
+
+router.get("/reviews", (req, res) => {
+  Review.find({food_id: req.query.food_id}).then((reviews) => res.send(reviews));
+});
+
+router.post("/review", auth.ensureLoggedIn, (req, res) => {
+  const newReview = new Review({
+    user_id: req.body.user_id,
+    food_id: req.body.food_id,
+    rating: req.body.rating,
+    content: req.body.content,
+  });
+
+  newReview.save().then((review) => res.send(review));
+});
+
+calculateAverageVenueRating = async (venue_id) => {
+  const items = await FoodItem.find({venue_id: venue_id})
+  if (tems.length === 0) {
+    return undefined;
+  }
+  let sum = 0;
+  let count = 0;
+  for (item of items) {
+    const rating = await calculateAverageFoodRating(item._id);
+    if (rating !== undefined) {
+      sum += await calculateAverageFoodRating(item._id);
+      count++;
+    }
+  }
+  return sum / items.length;
+}
+
+calculateAverageFoodRating = async (food_id) => {
+  const reveiews = await Review.find({venue_id: venue_id});
+  if (reviews.length === 0) {
+    return undefined;
+  }
+  sum = 0;
+  for (review of reviews) {
+    sum += review.rating;
+  }
+  return sum / reviews.length;
+}
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
