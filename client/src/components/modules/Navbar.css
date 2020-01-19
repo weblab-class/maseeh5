@@ -1,0 +1,53 @@
+.Navbar-container {
+  padding: var(--s) var(--m);
+  background-color: var(--medgray);
+  height: 36px;
+}
+
+.Navbar-link {
+  color: var(--white);
+  font-family: var(--secondary);
+  font-size: var(--m);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.Navbar-link:visited {
+  color: var(--white);
+  opacity: 0.6;
+  text-decoration: none;
+}
+
+.Navbar-link:hover {
+  opacity: 0.8;
+}
+
+.Navbar-logout {
+  padding: var(--s) var(--l);
+  background-color: var(--primary);
+  border: none;
+}
+
+.Navbar-link + .Navbar-link {
+  margin-left: var(--m);
+}
+
+.Navbar-home {
+  font-size: var(--l);
+}
+
+.Navbar-profileImage {
+  min-width: 10%;
+  padding-top: 10%;
+
+  /* make it a circle */
+  border-radius: 50%;
+
+  /* Centering on image`s center*/
+  background-position-y: center;
+  background-position-x: center;
+
+  background-image: url("../../public/corgi.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}

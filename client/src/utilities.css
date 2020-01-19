@@ -29,6 +29,9 @@
   --s: 8px;
   --m: 16px;
   --l: 24px;
+
+  --primaryFont: "Roboto Mono", sans-serif;
+  --secondaryFont: "Source Sans Pro", sans-serif;
 }
 
 body {
@@ -40,6 +43,7 @@ body {
 
 button {
   font-family: "Source Sans Pro", sans-serif;
+  border-radius: var(--s);
 }
 
 form {
@@ -48,6 +52,11 @@ form {
 
 .u-flex {
   display: flex;
+}
+
+.u-flex-between {
+  display: flex;
+  justify-content: space-between;
 }
 
 .u-flexColumn {
