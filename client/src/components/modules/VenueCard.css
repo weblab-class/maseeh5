@@ -1,0 +1,5 @@
+.VenueCard-container {
+  background-color: var(--lightgray);
+  border-radius: var(--s);
+  color: var(--secondary);
+}
