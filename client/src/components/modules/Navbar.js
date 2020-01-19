@@ -20,15 +20,29 @@ class NavBar extends Component {
 
   render() {
     return (
-      <nav className="NavBar-container u-flex-between">
-        <Link to="/" className="NavBar-link">
+      <nav className="Navbar-container u-flex-between">
+        <Link to="/" className="Navbar-link Navbar-home">
           Thought For Food
         </Link>
         {this.props.userId && (
-          <Link to={`/profile/${this.props.userId}`} className="NavBar-link" id="NavBar-profile" />
+          <div className="Navbar-linkContainer">
+            <GoogleLogout
+                clientId={GOOGLE_CLIENT_ID}
+                render={(renderProps) => (
+                  <button className="Navbar-link Navbar-logout" onClick={renderProps.onClick}>
+                    Logout
+                  </button>
+                )}
+                onLogoutSuccess={this.props.handleLogout}
+                onFailure={(err) => console.log(err)}
+            />
+            <Link to="/profile" className="Navbar-link">Profile</Link>
+            {/* <div className="Navbar-profileImage Navbar-link" /> */}
+          </div>
         )}
       </nav>
     );
   }
 }
+
 export default NavBar;
