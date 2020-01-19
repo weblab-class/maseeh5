@@ -27,17 +27,18 @@ class NavBar extends Component {
         {this.props.userId && (
           <div className="Navbar-linkContainer">
             <GoogleLogout
-                clientId={GOOGLE_CLIENT_ID}
-                render={(renderProps) => (
-                  <button className="Navbar-link Navbar-logout" onClick={renderProps.onClick}>
-                    Logout
-                  </button>
-                )}
-                onLogoutSuccess={this.props.handleLogout}
-                onFailure={(err) => console.log(err)}
+              clientId={GOOGLE_CLIENT_ID}
+              render={(renderProps) => (
+                <button className="Navbar-link Navbar-logout" onClick={renderProps.onClick}>
+                  Logout
+                </button>
+              )}
+              onLogoutSuccess={this.props.handleLogout}
+              onFailure={(err) => console.log(err)}
             />
-            <Link to="/profile" className="Navbar-link">Profile</Link>
-            {/* <div className="Navbar-profileImage Navbar-link" /> */}
+            <Link to="/profile" className="Navbar-link">
+              <div className="Navbar-image" />
+            </Link>
           </div>
         )}
       </nav>
