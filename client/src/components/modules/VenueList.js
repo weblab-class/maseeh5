@@ -26,6 +26,14 @@ class Login extends Component {
           _id: "akjd",
           name: "Baker",
         },
+        {
+          _id: "kajf",
+          name: "Simmons",
+        },
+        {
+          _id: "slak",
+          name: "Next",
+        },
       ],
     };
   }

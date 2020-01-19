@@ -23,7 +23,7 @@ class Login extends Component {
       <>
         <div className="VenueCard-container u-textCenter">
           <div className="u-bold">{this.props.venue.name}</div>
-          <button className="VenueCard-button">See More</button>
+          <button className="VenueCard-button u-pointer">See More</button>
         </div>
       </>
     );
