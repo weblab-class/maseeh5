@@ -44,10 +44,14 @@ class Home extends Component {
     return (
       <>
         <Navbar userId={this.props.userId} handleLogout={this.props.handleLogout} />
-        <div className="Home-dateCard u-textCenter u-bold">
-          {day}, {month} {currentDate.getDate()}, {currentDate.getFullYear()}
+        <div className="Home-container ">
+          <div className="u-flex-justifyCenter">
+            <div className="Home-dateCard u-textCenter u-bold">
+              {day}, {month} {currentDate.getDate()}, {currentDate.getFullYear()}: Lunch
+            </div>
+          </div>
+          <VenueList />
         </div>
-        <VenueList />
       </>
     );
   }

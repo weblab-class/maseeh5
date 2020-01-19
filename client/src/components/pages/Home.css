@@ -2,8 +2,8 @@
   background-color: var(--primary);
   color: var(--white);
   font-family: var(--primaryFont);
-  margin: 30px 100px;
-  padding: 10px;
   font-size: var(--l);
   border-radius: var(--s);
+  padding: var(--s);
+  margin: 20px 100px;
 }

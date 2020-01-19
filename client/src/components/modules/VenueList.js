@@ -18,6 +18,14 @@ class Login extends Component {
           _id: "lskdajflka",
           name: "Maseeh",
         },
+        {
+          _id: "aldkjfaldk",
+          name: "McCormick",
+        },
+        {
+          _id: "akjd",
+          name: "Baker",
+        },
       ],
     };
   }
@@ -32,7 +40,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="VenueList-container">
+      <div className="VenueList-container u-flex u-flex-justifyCenter">
         {this.state.venues.map((venue) => (
           <VenueCard venue={venue} />
         ))}

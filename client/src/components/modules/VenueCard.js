@@ -21,8 +21,9 @@ class Login extends Component {
     console.log(this.props);
     return (
       <>
-        <div className="VenueCard-container">
-          <span className="u-bold">{this.props.venue.name}</span>
+        <div className="VenueCard-container u-textCenter">
+          <div className="u-bold">{this.props.venue.name}</div>
+          <button className="VenueCard-button">See More</button>
         </div>
       </>
     );
