@@ -1,0 +1,41 @@
+.LoginCard-subtitle {
+  font-size: var(--m);
+  color: var(--white);
+  margin: 5%;
+}
+
+.LoginCard-title {
+  font-size: var(--l);
+  color: var(--white);
+}
+
+.LoginCard-background {
+  background: rgba(161, 161, 161, 0.8);
+  margin: 10% 25%;
+  border-radius: var(--s);
+  padding: 5%;
+}
+
+.LoginCard-loginButton {
+  padding: var(--s) var(--l);
+  border-color: var(--accent);
+  border-width: 2px;
+  background-color: transparent;
+  color: var(--accent);
+  box-shadow: 0 0 15px rgba(255, 209, 102, 0.75);
+  border-style: solid;
+  box-shadow: inset 0px 0px 0px #ffd166;
+  transition: all 0.5s !important;
+}
+
+.LoginCard-loginButton:hover {
+  padding: var(--s) var(--l);
+  border-color: var(--accent);
+  border-width: 2px;
+  background-color: transparent;
+  color: var(--secondary);
+  box-shadow: 0 0 15px rgba(255, 209, 102, 0.75);
+  border-style: solid;
+  transition: all 0.5s !important;
+  box-shadow: inset 0px 80px 0px #ffd166;
+}
