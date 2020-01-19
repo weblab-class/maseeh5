@@ -6,6 +6,7 @@
 
 .Navbar-link {
   color: var(--white);
+  font-family: var(--secondary);
   font-size: var(--m);
   text-decoration: none;
   display: inline-block;
