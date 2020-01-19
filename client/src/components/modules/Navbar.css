@@ -10,6 +10,7 @@
   font-size: var(--m);
   text-decoration: none;
   display: inline-block;
+  vertical-align: top;
 }
 
 .Navbar-link:visited {
@@ -36,9 +37,10 @@
   font-size: var(--l);
 }
 
-.Navbar-profileImage {
-  min-width: 10%;
-  padding-top: 10%;
+.Navbar-image {
+  width: 32px;
+  height: 32px;
+  margin-top: 2.5px;
 
   /* make it a circle */
   border-radius: 50%;
