@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import Navbar from "../modules/Navbar";
+
+import "../../utilities.css";
 
 class NotFound extends Component {
   constructor(props) {
@@ -7,9 +10,10 @@ class NotFound extends Component {
 
   render() {
     return (
-      <div>
+      <div className="u-textCenter">
+        <Navbar userId={this.props.userId} handleLogout={this.props.handleLogout} />
         <h1>404 Not Found</h1>
-        <p>The page you requested couldn't be found.</p>
+        <div>The page you requested couldn't be found :(.</div>
       </div>
     );
   }
