@@ -48,16 +48,7 @@ router.get("/user", (req, res) => {
 });
 
 router.get("/venues", (req, res) => {
-  Venue.find({}).then((venues) => {
-    Promise.all(venues.map(async (venue) => {
-      try {
-        venue.rating = await calculateAverageVenueRating(venue._id);
-        return venue;
-      } catch (err) {
-        console.err(err);
-      }
-    })).then(venues => res.send(venues));
-  });
+  Venue.find({}).then((venues) => Promise.all(venues.map(appendVenueRating)).then(venues => res.send(venues)));
 });
 
 router.post("/venue", auth.ensureLoggedIn, (req, res) => {
@@ -65,63 +56,71 @@ router.post("/venue", auth.ensureLoggedIn, (req, res) => {
     name: req.body.name,
   });
 
-  newVenue.save().then(async (venue) => {
-    try {
-      venue.rating = await calculateAverageVenueRating(venue._id);
-    } catch (err) {
-      console.err(err);
-    }
-    res.send(venue);
-  });
+  newVenue.save().then(appendVenueRating).then((venue) => res.send(venue));
 });
 
 router.get("/foods", (req, res) => {
-  FoodItem.find({venue_id: req.query.venue_id}).then((foods) => {
-    Promise.all(foods.map(async (food) => {
-      try {
-        food.rating = await calculateAverageFoodRating(food._id);
-        return food;
-      } catch (err) {
-        console.err(err);
-      }
-    })).then(foods => res.send(foods));
-  });
+  FoodItem.find({venue: req.query.venue_id}).populate('venue').then((foods) => Promise.all(foods.map(appendFoodRating)).then((foods) => res.send(foods)));
 });
 
 router.post("/food", auth.ensureLoggedIn, (req, res) => {
   const newFood = new FoodItem({
-    venue_id: req.body.venue_id,
+    venue: req.body.venue_id,
     name: req.body.name,
   });
 
-  newFood.save().then(async (food) => {
-    try {
-      food.rating = await calculateAverageFoodRating(food._id);
-    } catch (err) {
-      console.err(err);
-    }
-    res.send(food);
-  });
+  newFood.save().then((food) => FoodItem.findById(food._id).populate('venue').then((food) => appendFoodRating(food)).then((food) => res.send(food)));
 });
 
 router.get("/reviews", (req, res) => {
-  Review.find({food_id: req.query.food_id}).then((reviews) => res.send(reviews));
+  const query = {};
+  if (req.query.creator_id) {
+    query.creator = req.query.creator_id;
+  }
+  if (req.query.food_id) {
+    query.food = req.query.food_id;
+  }
+  Review.find(query).populate('creator').populate('food').populate('venue').then((reviews) => res.send(reviews));
 });
 
 router.post("/review", auth.ensureLoggedIn, (req, res) => {
   const newReview = new Review({
-    user_id: req.body.user_id,
-    food_id: req.body.food_id,
+    creator: req.user._id,
+    food: req.body.food_id,
     rating: req.body.rating,
     content: req.body.content,
   });
 
-  newReview.save().then((review) => res.send(review));
+  newReview.save().then((review) => Review.findById(review._id).populate('creator').populate('food').populate('venue').then((review) => res.send(review)));
 });
 
-calculateAverageVenueRating = async (venue_id) => {
-  const items = await FoodItem.find({venue_id: venue_id})
-  if (tems.length === 0) {
+appendVenueRating = async (venue) => {
+  try {
+    venue.rating = await calculateAverageVenueRating(venue._id);
+    console.log(venue.rating);
+    console.log(venue); // BUG: this is somehow broken
+    return venue;
+  } catch (err) {
+    console.log(err);
+    return undefined;
+  }
+}
+
+appendFoodRating = async (food) => {
+  try {
+    food.rating = await calculateAverageFoodRating(food._id);
+    console.log(food.rating);
+    console.log(food); // BUG: this is somehow broken
+    return food;
+  } catch (err) {
+    console.log(err);
+    return undefined;
+  }
+}
+
+calculateAverageVenueRating = async (venue) => {
+  const items = await FoodItem.find({venue: venue})
+  if (items.length === 0) {
     return undefined;
   }
   let sum = 0;
@@ -136,11 +135,12 @@ calculateAverageVenueRating = async (venue_id) => {
   return sum / items.length;
 }
 
-calculateAverageFoodRating = async (food_id) => {
-  const reveiews = await Review.find({venue_id: venue_id});
+calculateAverageFoodRating = async (food) => {
+  const reviews = await Review.find({food: food});
   if (reviews.length === 0) {
     return undefined;
   }
+  console.log(reviews);
   sum = 0;
   for (review of reviews) {
     sum += review.rating;

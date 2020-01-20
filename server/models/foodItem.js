@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const FoodItemSchema = new mongoose.Schema({
-  venue_id: String, // links to _id field in a venue object
+  venue: {type: ObjectId, ref: "venue"},
   name: String,
 });
 

@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const ReviewSchema = new mongoose.Schema({
-  user_id: String, // links to _id field in a user object
-  food_id: String, // links to _id field in a foodItem object
+  creator: {type: ObjectId, ref: "user"},
+  food: {type: ObjectId, ref: "foodItem"},
   rating: Number,
   content: String,
   timestamp: { type: Date, default: Date.now },

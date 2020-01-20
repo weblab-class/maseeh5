@@ -36,6 +36,9 @@ class App extends Component {
     post("/api/login", { token: userToken }).then((user) => {
       this.setState({ userId: user._id });
       post("/api/initsocket", { socketid: socket.id });
+      post("/api/review", {food_id: "5e25f6352e869f0cd4f68298", content: "Tastes like curly fries. Decent flavor, good texture, often overcooked.", rating: 4}).then((result) => {
+        console.log(result);
+      });
     });
   };
 
