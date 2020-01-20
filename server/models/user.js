@@ -5,5 +5,4 @@ const UserSchema = new mongoose.Schema({
   googleid: String,
 });
 
-// compile model from schema
 module.exports = mongoose.model("user", UserSchema);
