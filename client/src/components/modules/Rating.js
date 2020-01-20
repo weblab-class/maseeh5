@@ -1,15 +1,16 @@
 import React, { Component } from "react";
+import RatingStar from "./RatingStar";
 
-import "./NavBar.css";
+import "./Rating.css";
 import "../../utilities.css";
 
 /**
- * Rating is a component for displaying informationa and logging in
+ * Rating is a component for displaying and submit a number of stars.
  *
  * Proptypes
- * @param {function} handleLogin
+ * @param {Number} rating
+ * @param {function} updateRating - undefined indicates an immutable rating
  */
-
 class Rating extends Component {
   constructor(props) {
     super(props);
@@ -17,8 +18,19 @@ class Rating extends Component {
 
   componentDidMount() {}
 
+  update = (index) => {
+    if (this.props.updateRating) {
+      this.props.updateRating(index);
+    }
+  }
+
   render() {
-    <star-rating rating="rating" />;
+    const indices = [1,2,3,4,5];
+    return (
+      <div className="Rating-box">
+        {indices.map(index => <RatingStar key={index} index={index} state={this.props.rating >= index} update={this.props.updateRating && this.update} />)}
+      </div>
+    )
   }
 }
 

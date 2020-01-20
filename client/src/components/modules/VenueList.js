@@ -1,14 +1,13 @@
 import React, { Component } from "react";
-import VenueCard from "./VenueCard.js";
+import VenueCard from "./VenueCard";
 
 import "./VenueList.css";
 import "../../utilities.css";
 import { get } from "../../utilities";
 
 /**
- * VenueList is a component for displaying all of the Venue cards
+ * VenueList is a component for displaying all of the Venue cards.
  */
-
 class VenueList extends Component {
   constructor(props) {
     super(props);
@@ -50,7 +49,7 @@ class VenueList extends Component {
     return (
       <div className="VenueList-container u-flex u-flex-justifyCenter">
         {this.state.venues.map((venue) => (
-          <VenueCard venue={venue} />
+          <VenueCard key={venue._id} venue={venue} />
         ))}
       </div>
     );
