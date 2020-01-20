@@ -6,12 +6,11 @@ import "./LoginCard.css";
 import "../../utilities.css";
 
 /**
- * LoginCard is a component for displaying informationa and logging in
+ * LoginCard is a component for displaying site information and logging in.
  *
  * Proptypes
  * @param {function} handleLogin
  */
-
 class LoginCard extends Component {
   constructor(props) {
     super(props);
