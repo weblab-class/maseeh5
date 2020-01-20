@@ -7,7 +7,7 @@ import "./Navbar.css";
 const GOOGLE_CLIENT_ID = "391573326550-t7jv56qpqp8gg5j5ntuunn7akl20b58l.apps.googleusercontent.com";
 
 /**
- * The navigation bar at the top of all pages.
+ * Navbar is a component for displaying the navigation bar at the top of all pages.
  *
  * Proptypes
  * @param {string} userId
