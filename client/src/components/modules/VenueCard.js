@@ -10,7 +10,7 @@ import "../../utilities.css";
  * @param {VenueObject} venue
  */
 
-class Login extends Component {
+class VenueCard extends Component {
   constructor(props) {
     super(props);
   }
@@ -30,4 +30,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default VenueCard;

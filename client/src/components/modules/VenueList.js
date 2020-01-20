@@ -9,7 +9,7 @@ import { get } from "../../utilities";
  * VenueList is a component for displaying all of the Venue cards
  */
 
-class Login extends Component {
+class VenueList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -57,4 +57,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default VenueList;
