@@ -37,7 +37,6 @@ class Feed extends Component {
         <div className="u-flex Feed-container">
           <VenueSelector venueId={this.props.venueId} className="Feed-venueSelector" />
           <FoodList
-            userId={this.props.userId}
             venueId={this.props.venueId}
             filterRating={this.state.filterRating}
             search={this.state.search}

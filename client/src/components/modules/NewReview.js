@@ -8,7 +8,6 @@ import "./NewReview.css";
 /**
  * NewReview is a component for adding a new review.
  *
- * @param {String} userId
  * @param {Date} venue
  * @param {Number} foodId
  * @param {function} onSubmit

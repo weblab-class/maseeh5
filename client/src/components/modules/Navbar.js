@@ -29,7 +29,7 @@ class Navbar extends Component {
             <GoogleLogout
               clientId={GOOGLE_CLIENT_ID}
               render={(renderProps) => (
-                <button className="Navbar-link Navbar-logout" onClick={renderProps.onClick}>
+                <button className="Navbar-link Navbar-logout u-pointer" onClick={renderProps.onClick}>
                   Logout
                 </button>
               )}

@@ -9,7 +9,6 @@ import { get } from "../../utilities";
  * FoodList is a component for displaying all of the FoodItem cards.
  *
  * Proptypes
- * @param {String} userId
  * @param {object} venue
  * @param {Function} filterRating
  * @param {String} search
@@ -35,7 +34,6 @@ class FoodList extends Component {
         key={`Card_${foodObj._id}`}
         venue={foodObj.venue}
         foodRating={foodObj.rating}
-        userId={this.props.userId}
         name={foodObj.name}
         foodId={foodObj._id}
       />

@@ -12,7 +12,6 @@ import { get } from "../../utilities";
  * FoodItem is a component for creating cards for each foodItem.
  *
  * Proptypes
- * @param {String} userId
  * @param {VenueObj} venue
  * @param {number} foodRating
  * @param {String} name
