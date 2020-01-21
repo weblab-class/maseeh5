@@ -1,0 +1,6 @@
+.VenueDropdown-venueName {
+  color: var(--white);
+  background-color: var(--secondary);
+  height: 30px;
+  padding: 5px 20px;
+}

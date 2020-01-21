@@ -62,7 +62,7 @@ class App extends Component {
             />
           )}
           <NotFound default />
-          <Feed path="/feed/:venue" userId={this.state.userId} />
+          <Feed path="/feed/:venueId" userId={this.state.userId} />
         </Router>
       </>
     );

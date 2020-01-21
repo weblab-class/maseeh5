@@ -1,0 +1,17 @@
+.VenueSelector-card {
+  background-color: var(--secondary);
+  color: var(--white);
+  font-size: var(--l);
+  border-radius: var(--s);
+  padding: 5px 20px;
+  height: 30px;
+}
+
+.VenueSelector-downArrow {
+  font-size: var(--m);
+}
+
+.VenueSelector-pageLoading {
+  font-size: var(--m);
+  color: var(--secondary);
+}

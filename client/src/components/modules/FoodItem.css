@@ -1,0 +1,19 @@
+.FoodItem-foodName {
+  font-size: var(--m);
+}
+
+.FoodItem-container {
+  background-color: var(--lightgray);
+  color: var(--secondary);
+  border-radius: var(--s) var(--s) 0 0;
+  margin: 0 0 10px 0;
+  padding: 10px;
+  height: 20px;
+}
+
+.FoodItem-addReview {
+  color: var(--secondary);
+  background-color: var(--lightgray);
+  border-radius: 0 0 var(--s) var(--s);
+  margin: 0 0 10px 0;
+}

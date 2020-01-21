@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import NavBar from "../modules/NavBar";
+import Navbar from "../modules/Navbar";
 import FilterBox from "../modules/FilterBox";
 import FoodList from "../modules/FoodList";
 import VenueSelector from "../modules/VenueSelector";
@@ -13,7 +13,7 @@ import "./Feed.css";
  * Proptypes
  * @param {string} userId
  * @param {function} handleLogout
- * @param {VenueObject} venue
+ * @param {String} venueId
  */
 
 class Feed extends Component {
@@ -33,7 +33,18 @@ class Feed extends Component {
   render() {
     return (
       <>
-        <NavBar userId={this.props.userId} handleLogout={this.props.handleLogout} />
+        <Navbar userId={this.props.userId} handleLogout={this.props.handleLogout} />
+        <div className="u-flex">
+          <VenueSelector venueId={this.props.venueId} className="Feed-venueSelector" />
+          <FoodList
+            userId={this.props.userId}
+            venueId={this.props.venueId}
+            filterRating={this.state.filterRating}
+            search={this.state.search}
+            orderBy={this.state.orderBy}
+            className="Feed-foodList"
+          />
+        </div>
       </>
     );
   }

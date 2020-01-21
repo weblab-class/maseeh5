@@ -19,48 +19,30 @@ class FoodList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      foodItems: [
-        {
-          venue: "Maseeh",
-          foodRating: "4",
-        },
-        {
-          venue: "Maseeh",
-          foodRating: "3",
-        },
-        {
-          venue: "Maseeh",
-          foodRating: "2",
-        },
-        {
-          venue: "Maseeh",
-          foodRating: "5",
-        },
-      ],
+      foodItems: [],
     };
   }
 
   componentDidMount() {
-    get("/api/food").then((foodObjs) => {
-      let reversedFoodObjs = foodObjs.reverse();
-      reversedFoodObjs.map((foodObjs) => {
-        this.setState({ foodItems: this.state.stories.concat([foodObj]) });
-      });
+    get("/api/foods", { venue_id: this.props.venueId }).then((foodObjs) => {
+      this.setState({ foodItems: foodObjs });
     });
   }
 
   render() {
-    let food = this.state.stories.map((foodObj) => (
+    let foodCards = this.state.foodItems.map((foodObj) => (
       <FoodItem
         key={`Card_${foodObj._id}`}
         venue={foodObj.venue}
         foodRating={foodObj.foodRating}
         userId={this.props.userId}
+        name={foodObj.name}
+        foodId={foodObj._id}
       />
     ));
     return (
       <>
-        <div>{food}</div>
+        <div className="FoodList-cards">{foodCards}</div>
       </>
     );
   }
