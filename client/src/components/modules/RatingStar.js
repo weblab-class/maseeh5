@@ -15,14 +15,6 @@ class RatingStar extends Component {
     super(props);
   }
 
-  componentDidMount() {}
-
-  handleClick = (event) => {
-    if (this.props.update) {
-      this.props.update();
-    }
-  }
-
   render() {
     return (
       <span

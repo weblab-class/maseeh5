@@ -17,8 +17,6 @@ class Rating extends Component {
     this.state = {highlighted: 0}
   }
 
-  componentDidMount() {}
-
   updateFactory = (index) => {
     return () => {
       if (this.props.updateRating) {
