@@ -22,12 +22,10 @@ class UserReview extends Component {
     const options = { year: "numeric", month: "long", day: "numeric" };
     return (
       <div className="User-reviews">
-        <p>Dining Hall: {this.props.venue}</p>
-        <p>Food Item: {this.props.foodItem}</p>
-        <p>Date: {new Date(this.props.date).toLocaleDateString(undefined, options)}</p>
-        <p>
-          Rating: <Rating rating={this.props.rating} />
-        </p>
+        <div>Dining Hall: {this.props.venue}</div>
+        <div>Food Item: {this.props.foodItem}</div>
+        <div>Date: {new Date(this.props.date).toLocaleDateString(undefined, options)}</div>
+        <div>Rating: <Rating rating={this.props.rating} /></div>
         <p>Review: {this.props.content}</p>
       </div>
     );

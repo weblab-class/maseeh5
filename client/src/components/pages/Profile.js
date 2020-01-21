@@ -45,12 +45,6 @@ class Profile extends Component {
             <h4 className="Profile-subTitle u-underline">Reviews</h4>
           </div>
           <UserReviewList user={this.props.profileId} />
-          {/* <div className="Profile-reviewContent" id="profile-description">
-            <p>Dining Hall: Maseeh</p>
-            <p>Food Item: Rice</p>
-            <p>Date: 02/01/2020 </p>
-            <p>Review: nalsdnfjsandfsd,mf a sdfsd. fjasndkf msdjf sda fsd fmn sdf </p>
-          </div> */}
         </div>
       </>
     );
