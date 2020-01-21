@@ -65,6 +65,12 @@ class FoodItem extends Component {
         {this.state.expanded && (
           <>
             <ReviewList foodId={this.props.foodId} className="FoodItem-reviewList" />
+          </>
+        )}
+
+        {/* displays add review link when not adding review */}
+        {this.state.expanded && !this.state.addingReview && (
+          <>
             <div
               className="u-textCenter FoodItem-addReview u-pointer"
               onClick={this.changeAddReview}
@@ -74,18 +80,11 @@ class FoodItem extends Component {
           </>
         )}
 
-        {/* displays add review functionality when clicked */}
-        {this.state.expanded && !this.state.addingReview ? (
-          <>
-            <div
-              className="u-textCenter FoodItem-addReview u-pointer"
-              onClick={this.changeAddReview}
-            >
-              Add Review
-            </div>
-          </>
-        ) : (
-          <NewReview />
+        {/* displays text fields to add review  */}
+        {this.state.expanded && this.state.addingReview && (
+          <div className="FoodItem-newReview">
+            <NewReview venue={this.props.venue} foodId={this.props.foodId} />
+          </div>
         )}
       </div>
     );

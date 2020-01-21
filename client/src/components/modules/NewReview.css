@@ -1,0 +1,45 @@
+.NewReview-container {
+  background-color: var(--lightgray);
+  font-family: var(--secondaryFont);
+  font-size: var(--m);
+}
+
+textarea {
+  resize: none;
+  width: 100%;
+  font-family: var(--secondaryFont);
+  background-color: var(--white);
+}
+
+.NewReview-textarea {
+  margin: 0 var(--s) 0 0;
+}
+
+.NewReview-rating {
+  padding: 0 0 var(--s) var(--s);
+}
+
+.NewReview-flexRight {
+  display: flex;
+  justify-content: right;
+}
+
+.NewReview-cancel {
+  background-color: var(--lightgray);
+  color: var(--secondary);
+  border-width: 2px;
+  border-color: var(--secondary);
+  padding: var(--xs) var(--s);
+  margin: var(--xs) var(--s);
+  border-style: solid;
+}
+
+.NewReview-submit {
+  background-color: var(--secondary);
+  color: var(--white);
+  padding: var(--xs) var(--s);
+  border-width: 2px;
+  border-color: var(--secondary);
+  margin: var(--xs) 0;
+  border-style: solid;
+}
