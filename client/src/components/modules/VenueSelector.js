@@ -1,61 +1,44 @@
 import React, { Component } from "react";
+import { navigate } from "@reach/router"
+import { get, post } from "../../utilities";
 
 import "../../utilities.css";
 import "./VenueSelector.css";
-import { get } from "../../utilities";
+
 
 /**
  * VenueSelector is a component for switching the venue the user is viewing
  *
  * Proptypes
- * @param {object} venue
+ * @param {String} venueId
  */
-
 class VenueSelector extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      venues: [],
-      currentVenue: "",
-      dropdown: false,
+      venues: undefined,
     };
   }
 
   componentDidMount() {
     get("/api/venues").then((data) => {
-      this.setState({
-        currentVenue: data.filter((venue) => venue._id === this.props.venueId)[0].name,
-      });
-      this.setState({
-        venues: data.filter((venue) => venue._id !== this.props.venueId),
-      });
+      this.setState({venues: data});
     });
   }
 
-  dropdownOn = () => {
-    this.setState({ dropdown: true });
-  };
-
-  dropdownOff = () => {
-    this.setState({ dropdown: false });
-  };
+  handleSelect = (event) => {
+    navigate(`/feed/${event.target.value}`).then(() => window.location.reload());
+  }
 
   render() {
-    let venueList = this.state.venues.map((venueObj) => (
-      // <VenueDropdown venueId={venueObj._id} venueName={venueObj.name} />
-      <option className="VenueSelector-option" key={"Option" + venueObj._id}>
-        {venueObj.name}
-      </option>
-    ));
     return (
       <>
-        {this.state.currentVenue ? (
-          <select className="VenueSelector-card">
-            <option className="VenueSelector-option">{this.state.currentVenue}</option>
-            {venueList}
+        {this.state.venues ? (
+          <select className="VenueSelector-card" value={this.props.venueId} onChange={this.handleSelect}>
+            {this.state.venues.map((venueObj) => <option className="VenueSelector-option" key={venueObj._id} value={venueObj._id}>{venueObj.name}</option>)}
           </select>
         ) : (
-          <div className="VenueSelector-pageLoading">Page Loading!</div>
+          <div className="VenueSelector-pageLoading">Loading...</div>
         )}
       </>
     );
