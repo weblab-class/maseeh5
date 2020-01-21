@@ -30,14 +30,14 @@ class Profile extends Component {
 
   render() {
     if (!this.state.user) {
-      return <div> Loading! </div>;
+      return <div>Loading!</div>;
     }
     return (
       <>
         <Navbar userId={this.props.userId} handleLogout={this.props.handleLogout} />
         <h1 className="Profile-name u-textCenter">{this.state.user.name}</h1>
         <div className="Profile-avatarContainer">
-          <div className="Profile-avatar" style={{backgroundImage: `url(${this.state.user.pictureurl})`}}/>
+          <div className="Profile-avatar" style={{backgroundImage: `url(${this.state.user.pictureurl}), url("../../public/corgi.jpg")`}}/>
         </div>
         <hr className="Profile-line" />
         <div className="u-flex-justifyCenter Profile-reviews">
