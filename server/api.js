@@ -80,7 +80,7 @@ router.get("/reviews", (req, res) => {
   if (req.query.food_id) {
     query.food = req.query.food_id;
   }
-  Review.find(query).populate('creator').populate('food').populate('venue').then((reviews) => res.send(reviews));
+  Review.find(query).populate('creator').populate({path: 'food', populate: {path: 'venue'}}).then((reviews) => res.send(reviews));
 });
 
 router.post("/review", auth.ensureLoggedIn, (req, res) => {
@@ -91,7 +91,7 @@ router.post("/review", auth.ensureLoggedIn, (req, res) => {
     content: req.body.content,
   });
 
-  newReview.save().then((review) => Review.findById(review._id).populate('creator').populate('food').populate('venue').then((review) => res.send(review)));
+  newReview.save().then((review) => Review.findById(review._id).populate('creator').populate({path: 'food', populate: {path: 'venue'}}).then((review) => res.send(review)));
 });
 
 appendVenueRating = async (venue) => {
