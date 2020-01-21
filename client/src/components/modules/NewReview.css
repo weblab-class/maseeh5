@@ -8,16 +8,13 @@ textarea {
   resize: none;
   width: 100%;
   font-family: var(--secondaryFont);
+  font-size: var(--m);
   background-color: var(--white);
   padding: var(--xs);
 }
 
 .NewReview-textarea {
-  margin: 0 var(--s) 0 0;
-}
-
-.NewReview-rating {
-  padding: 0 0 var(--s) var(--s);
+  margin: var(--m) var(--s) 0 0;
 }
 
 .NewReview-flexRight {
@@ -26,6 +23,7 @@ textarea {
 }
 
 .NewReview-cancel {
+  font-size: var(--m);
   background-color: var(--lightgray);
   color: var(--secondary);
   border-width: 1px;
@@ -37,6 +35,7 @@ textarea {
 }
 
 .NewReview-submit {
+  font-size: var(--m);
   background-color: var(--secondary);
   color: var(--white);
   padding: var(--xs) var(--s);

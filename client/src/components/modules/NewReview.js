@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Rating from "./Rating";
+import { post } from "../../utilities";
 
 import "../../utilities.css";
 import "./NewReview.css";
@@ -9,7 +10,9 @@ import "./NewReview.css";
  *
  * @param {String} userId
  * @param {Date} venue
- * @param {number} foodId
+ * @param {Number} foodId
+ * @param {function} onSubmit
+ * @param {function} onCancel
  */
 
 class NewReview extends Component {
@@ -25,26 +28,29 @@ class NewReview extends Component {
     this.setState({ rating: value });
   };
 
-  submitReview = () => {};
+  updateContent = (event) => {
+    this.setState({content: event.target.value});
+  };
+
+  submit = () => {
+    if (this.state.content && this.state.rating) {
+      post("/api/review", {food_id: this.props.foodId, rating: this.state.rating, content: this.state.content}).then((result) => this.props.onSubmit(result));
+    }
+  };
 
   render() {
     return (
       <>
         <div className="NewReview-container">
           <div className="u-flex">
-            My Rating:{" "}
-            <div className="NewReview-rating">
-              <Rating updateRating={this.updateRating} rating={this.state.rating} />
-            </div>
+            <div>My Rating:&emsp;<Rating updateRating={this.updateRating} rating={this.state.rating} /></div>
           </div>
           <div className="NewReview-textarea">
-            <textarea type="text" placeholder="Write your review here" id="content" />
+            <textarea type="text" placeholder="Write your review here" onChange={this.updateContent} />
           </div>
           <div className="NewReview-flexRight">
-            <button className="NewReview-cancel u-pointer">Cancel</button>
-            <button className="NewReview-submit u-pointer" onClick={this.submitReview}>
-              Submit
-            </button>
+            <button className="NewReview-cancel u-pointer" onClick={this.props.onCancel}>Cancel</button>
+            <button className="NewReview-submit u-pointer" onClick={this.submit}>Submit</button>
           </div>
         </div>
       </>

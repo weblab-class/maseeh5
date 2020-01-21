@@ -9,27 +9,19 @@ import { get } from "../../utilities";
  * ReviewList is a component for displaying all of the reviews for each food item.
  *
  * @param {String} foodId
+ * @param {[Object]} reviews
  */
 
 class ReviewList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      reviews: undefined,
-    };
-  }
-
-  componentDidMount() {
-    get("/api/reviews", { food_id: this.props.foodId }).then((data) => {
-      this.setState({ reviews: data });
-    });
   }
 
   render() {
     let reviewCards = null;
-    if (this.state.reviews) {
-      if (this.state.reviews.length !== 0) {
-        reviewCards = this.state.reviews.map((reviewObj) => (
+    if (this.props.reviews) {
+      if (this.props.reviews.length !== 0) {
+        reviewCards = this.props.reviews.map((reviewObj) => (
           <Review
             key={`Card_${reviewObj._id}`}
             //date={reviewObj.timestamp}

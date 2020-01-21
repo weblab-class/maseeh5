@@ -26,10 +26,9 @@ class Review extends Component {
           <div className="u-flex-between">
             <div className="Review-userName u-bold">{this.props.userName}</div>
             <div className="u-flex">
-              Rating:
-              <div className="Review-rating">
-                <Rating rating={this.props.reviewRating} />
-              </div>
+            <div className="Review-rating">
+              Rating:&emsp;<Rating rating={this.props.reviewRating} />
+            </div>
             </div>
           </div>
           <div className="Review-content">{this.props.content}</div>
