@@ -52,6 +52,7 @@ class App extends Component {
       <>
         <Router>
           {this.state.userId ? (
+            <Home path="/" userId={this.state.userId} handleLogout={this.handleLogout} />
           ) : (
             <Login
               path="/"

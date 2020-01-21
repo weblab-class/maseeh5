@@ -15,13 +15,13 @@
   margin-left: 2.5%;
   margin-right: 2.5%;
   background-color: var(--lightgray);
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
 
   /* font */
   font: var(--secondaryFont);
 
   text-align: left;
+}
+
+.User-reviews .Rating-box {
+  display: inline-block;
 }
