@@ -101,3 +101,7 @@ form {
 .u-link:hover {
   color: var(--primary--dim);
 }
+
+.u-underline {
+  text-decoration: underline;
+}
