@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import VenueDropdown from "./VenueDropdown";
 
 import "../../utilities.css";
 import "./VenueSelector.css";
@@ -43,25 +42,18 @@ class VenueSelector extends Component {
 
   render() {
     let venueList = this.state.venues.map((venueObj) => (
-      <VenueDropdown venueId={venueObj._id} venueName={venueObj.name} />
+      // <VenueDropdown venueId={venueObj._id} venueName={venueObj.name} />
+      <option className="VenueSelector-option" key={"Option" + venueObj._id}>
+        {venueObj.name}
+      </option>
     ));
     return (
       <>
         {this.state.currentVenue ? (
-          this.state.dropdown ? (
-            <div className="VenueSelector-card">
-              <div className="u-pointer" onClick={this.dropdownOff}>
-                {this.state.currentVenue}
-                <span> &#9660;</span>
-                {venueList}
-              </div>
-            </div>
-          ) : (
-            <div className="VenueSelector-card u-pointer" onClick={this.dropdownOn}>
-              {this.state.currentVenue}
-              <span> &#9660;</span>
-            </div>
-          )
+          <select className="VenueSelector-card">
+            <option className="VenueSelector-option">{this.state.currentVenue}</option>
+            {venueList}
+          </select>
         ) : (
           <div className="VenueSelector-pageLoading">Page Loading!</div>
         )}

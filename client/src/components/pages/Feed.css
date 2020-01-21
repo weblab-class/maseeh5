@@ -1,11 +1,11 @@
 .Feed-foodList {
-  flex: 3 0px;
+  width: auto;
 }
 
 .Feed-venueSelector {
-  flex-grow: 1 0px;
 }
 
 .Feed-container {
   margin: 30px;
+  width: auto;
 }

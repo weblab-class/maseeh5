@@ -1,9 +1,17 @@
 .Review-userName {
   font-size: var(--m);
-  font-weight: bold;
 }
 
 .Review-container {
   color: var(--secondary);
   font-family: var(--secondaryFont);
+  padding: var(--s);
+}
+
+.Review-content {
+  font-size: var(--m);
+}
+
+.Review-rating {
+  margin: 0 0 0 10px;
 }
