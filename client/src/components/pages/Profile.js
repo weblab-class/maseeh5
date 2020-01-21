@@ -37,7 +37,7 @@ class Profile extends Component {
         <Navbar userId={this.props.userId} handleLogout={this.props.handleLogout} />
         <h1 className="Profile-name u-textCenter">{this.state.user.name}</h1>
         <div className="Profile-avatarContainer">
-          <div className="Profile-avatar" />
+          <div className="Profile-avatar" style={{backgroundImage: `url(${this.state.user.pictureurl})`}}/>
         </div>
         <hr className="Profile-line" />
         <div className="u-flex-justifyCenter Profile-reviews">
