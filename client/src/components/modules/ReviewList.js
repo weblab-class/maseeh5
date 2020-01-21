@@ -15,7 +15,7 @@ class ReviewList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviews: [],
+      reviews: undefined,
     };
   }
 
@@ -26,15 +26,22 @@ class ReviewList extends Component {
   }
 
   render() {
-    let reviewCards = this.state.reviews.map((reviewObj) => (
-      <Review
-        key={`Card_${reviewObj._id}`}
-        //date={reviewObj.timestamp}
-        reviewRating={reviewObj.rating}
-        content={reviewObj.content}
-        userName={reviewObj.creator.name}
-      />
-    ));
+    let reviewCards = null;
+    if (this.state.reviews) {
+      if (this.state.reviews.length !== 0) {
+        reviewCards = this.state.reviews.map((reviewObj) => (
+          <Review
+            key={`Card_${reviewObj._id}`}
+            //date={reviewObj.timestamp}
+            reviewRating={reviewObj.rating}
+            content={reviewObj.content}
+            userName={reviewObj.creator.name}
+          />
+        ));
+      } else {
+        reviewCards = <div className="ReviewList-empty">No Reviews!</div>;
+      }
+    }
     return <div>{reviewCards}</div>;
   }
 }

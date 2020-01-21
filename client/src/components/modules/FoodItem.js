@@ -34,19 +34,20 @@ class FoodItem extends Component {
   };
 
   // Displays add review portion of card
-  expandAddReview = () => {
-    addingReview: true;
-  };
-  minimizeAddReview = () => {
-    addingReview: false;
+  changeAddReview = () => {
+    if (this.state.addingReview === false) {
+      this.setState({ addingReview: true });
+    } else {
+      this.setState({ addingReview: false });
+    }
   };
 
   render() {
     return (
-      <>
+      <div className="FoodItem-largeContainer">
         <div className="FoodItem-container u-flex-between">
           <Rating rating={this.props.foodRating} />
-          <div className="FoodItem-foodName u-bold">{this.props.name}</div>
+          <div className="FoodItem-foodName u-bold u-flex-justifyCenter">{this.props.name}</div>
           {this.state.expanded ? (
             <div className="u-flexColumn">
               <div onClick={this.minimize} className="u-pointer">
@@ -59,13 +60,34 @@ class FoodItem extends Component {
             </div>
           )}
         </div>
+
+        {/* displays review list when expanded */}
         {this.state.expanded && (
           <>
             <ReviewList foodId={this.props.foodId} className="FoodItem-reviewList" />
-            <div className="u-textCenter FoodItem-addReview u-pointer">Add Review</div>
+            <div
+              className="u-textCenter FoodItem-addReview u-pointer"
+              onClick={this.changeAddReview}
+            >
+              Add Review
+            </div>
           </>
         )}
-      </>
+
+        {/* displays add review functionality when clicked */}
+        {this.state.expanded && !this.state.addingReview ? (
+          <>
+            <div
+              className="u-textCenter FoodItem-addReview u-pointer"
+              onClick={this.changeAddReview}
+            >
+              Add Review
+            </div>
+          </>
+        ) : (
+          <NewReview />
+        )}
+      </div>
     );
   }
 }

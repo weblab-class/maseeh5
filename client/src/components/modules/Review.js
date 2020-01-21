@@ -20,13 +20,17 @@ class Review extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <>
         <div className="Review-container">
           <div className="u-flex-between">
             <div className="Review-userName u-bold">{this.props.userName}</div>
-            <Rating rating={this.props.reviewRating} />
+            <div className="u-flex">
+              Rating:
+              <div className="Review-rating">
+                <Rating rating={this.props.reviewRating} />
+              </div>
+            </div>
           </div>
           <div className="Review-content">{this.props.content}</div>
         </div>
