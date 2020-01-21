@@ -5,7 +5,7 @@ import "./Rating.css";
 import "../../utilities.css";
 
 /**
- * Rating is a component for displaying and submit a number of stars.
+ * Rating is a component for displaying and submitting a number of stars.
  *
  * Proptypes
  * @param {Number} rating
@@ -28,7 +28,7 @@ class Rating extends Component {
     const indices = [1,2,3,4,5];
     return (
       <div className="Rating-box">
-        {indices.map(index => <RatingStar key={index} index={index} state={this.props.rating >= index} update={this.props.updateRating && this.update} />)}
+        {indices.map(index => <RatingStar key={index} index={index} state={this.props.rating && this.props.rating >= index} update={this.props.updateRating && this.update} />)}
       </div>
     )
   }
