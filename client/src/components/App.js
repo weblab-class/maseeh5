@@ -3,6 +3,7 @@ import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Login from "./pages/Login.js";
 import Home from "./pages/Home.js";
+import Profile from "./pages/Profile.js";
 
 import "../utilities.css";
 
@@ -51,11 +52,6 @@ class App extends Component {
       <>
         <Router>
           {this.state.userId ? (
-            <Home
-              path="/"
-              userId={this.state.userId}
-              handleLogout={this.handleLogout}
-            />
           ) : (
             <Login
               path="/"
@@ -64,6 +60,11 @@ class App extends Component {
               userId={this.state.userId}
             />
           )}
+          <Profile
+            path="/profile/:profileId"
+            userId={this.state.userId}
+            handleLogout={this.handleLogout}
+          />
           <NotFound default />
         </Router>
       </>

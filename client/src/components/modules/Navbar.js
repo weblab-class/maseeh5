@@ -36,7 +36,7 @@ class NavBar extends Component {
               onLogoutSuccess={this.props.handleLogout}
               onFailure={(err) => console.log(err)}
             />
-            <Link to="/profile" className="Navbar-link">
+            <Link to={`/profile/${this.props.userId}`} className="Navbar-link">
               <div className="Navbar-image" />
             </Link>
           </div>
