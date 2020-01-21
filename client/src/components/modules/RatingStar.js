@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-// import "./RatingStar.css";
 import "../../utilities.css";
 
 /**
