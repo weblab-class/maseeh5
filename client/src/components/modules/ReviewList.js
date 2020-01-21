@@ -30,7 +30,7 @@ class ReviewList extends Component {
       <Review
         key={`Card_${reviewObj._id}`}
         //date={reviewObj.timestamp}
-        reviewRating={reviewObj.reviewRating}
+        reviewRating={reviewObj.rating}
         content={reviewObj.content}
         userName={reviewObj.creator.name}
       />

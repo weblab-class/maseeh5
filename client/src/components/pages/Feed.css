@@ -5,3 +5,7 @@
 .Feed-venueSelector {
   flex-grow: 1 0px;
 }
+
+.Feed-container {
+  margin: 30px;
+}

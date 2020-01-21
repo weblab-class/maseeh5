@@ -34,7 +34,7 @@ class FoodList extends Component {
       <FoodItem
         key={`Card_${foodObj._id}`}
         venue={foodObj.venue}
-        foodRating={foodObj.foodRating}
+        foodRating={foodObj.rating}
         userId={this.props.userId}
         name={foodObj.name}
         foodId={foodObj._id}

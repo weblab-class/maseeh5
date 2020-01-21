@@ -20,9 +20,7 @@ class Review extends Component {
   }
 
   render() {
-    {
-      console.log(this.props.userName);
-    }
+    console.log(this.props);
     return (
       <>
         <div className="Review-container">
@@ -30,7 +28,7 @@ class Review extends Component {
             <div className="Review-userName u-bold">{this.props.userName}</div>
             <Rating rating={this.props.reviewRating} />
           </div>
-          <div>{this.props.content}</div>
+          <div className="Review-content">{this.props.content}</div>
         </div>
       </>
     );
