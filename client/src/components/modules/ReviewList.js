@@ -9,7 +9,6 @@ import { get } from "../../utilities";
  * ReviewList is a component for displaying all of the reviews for each food item.
  *
  * @param {String} foodId
- * @param {String} food
  */
 
 class ReviewList extends Component {
@@ -33,7 +32,7 @@ class ReviewList extends Component {
         //date={reviewObj.timestamp}
         reviewRating={reviewObj.reviewRating}
         content={reviewObj.content}
-        userName={reviewObj.user.name}
+        userName={reviewObj.creator.name}
       />
     ));
     return <div>{reviewCards}</div>;

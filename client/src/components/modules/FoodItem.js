@@ -52,11 +52,6 @@ class FoodItem extends Component {
               <div onClick={this.minimize} className="u-pointer">
                 -
               </div>
-              <ReviewList
-                foodId={this.props.foodId}
-                venueId={this.props.venue._id}
-                userId={this.props.userId}
-              />
             </div>
           ) : (
             <div onClick={this.expand} className="u-pointer">
@@ -65,7 +60,10 @@ class FoodItem extends Component {
           )}
         </div>
         {this.state.expanded && (
-          <div className="u-textCenter FoodItem-addReview u-pointer">Add Review</div>
+          <>
+            <ReviewList foodId={this.props.foodId} className="FoodItem-reviewList" />
+            <div className="u-textCenter FoodItem-addReview u-pointer">Add Review</div>
+          </>
         )}
       </>
     );

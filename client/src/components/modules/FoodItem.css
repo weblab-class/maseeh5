@@ -17,3 +17,7 @@
   border-radius: 0 0 var(--s) var(--s);
   margin: 0 0 10px 0;
 }
+
+.FoodItem-reviewList {
+  padding: 10px;
+}

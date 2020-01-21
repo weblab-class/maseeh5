@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Rating from "./Rating";
 
 import "./Review.css";
 import "../../utilities.css";
@@ -22,7 +23,17 @@ class Review extends Component {
     {
       console.log(this.props.userName);
     }
-    return <>{this.props.userName}</>;
+    return (
+      <>
+        <div className="Review-container">
+          <div className="u-flex-between">
+            <div className="Review-userName u-bold">{this.props.userName}</div>
+            <Rating rating={this.props.reviewRating} />
+          </div>
+          <div>{this.props.content}</div>
+        </div>
+      </>
+    );
   }
 }
 

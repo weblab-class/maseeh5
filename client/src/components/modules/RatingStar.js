@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import "./RatingStar.css";
+// import "./RatingStar.css";
 import "../../utilities.css";
 
 /**
@@ -22,12 +22,17 @@ class RatingStar extends Component {
     if (this.props.update) {
       this.props.update(this.props.index);
     }
-  }
+  };
 
   render() {
     return (
-      <span className={this.props.update ? "u-pointer RatingStar-mutable" : ""} onClick={this.handleClick}>{this.props.state ? '\u2605' : '\u2606'}</span>
-    )
+      <span
+        className={this.props.update ? "u-pointer RatingStar-mutable" : ""}
+        onClick={this.handleClick}
+      >
+        {this.props.state ? "\u2605" : "\u2606"}
+      </span>
+    );
   }
 }
 
