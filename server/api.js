@@ -96,10 +96,11 @@ router.post("/review", auth.ensureLoggedIn, (req, res) => {
 
 appendVenueRating = async (venue) => {
   try {
-    venue.rating = await calculateAverageVenueRating(venue._id);
-    console.log(venue.rating);
-    console.log(venue); // BUG: this is somehow broken
-    return venue;
+    return {
+      _id: venue._id,
+      name: venue.name,
+      rating: Math.round(await calculateAverageVenueRating(venue._id)),
+    }
   } catch (err) {
     console.log(err);
     return undefined;
@@ -108,10 +109,12 @@ appendVenueRating = async (venue) => {
 
 appendFoodRating = async (food) => {
   try {
-    food.rating = await calculateAverageFoodRating(food._id);
-    console.log(food.rating);
-    console.log(food); // BUG: this is somehow broken
-    return food;
+    return {
+      _id: food._id,
+      venue: food.venue,
+      name: food.name,
+      rating: Math.round(await calculateAverageFoodRating(food._id)),
+    }
   } catch (err) {
     console.log(err);
     return undefined;
@@ -120,19 +123,19 @@ appendFoodRating = async (food) => {
 
 calculateAverageVenueRating = async (venue) => {
   const items = await FoodItem.find({venue: venue})
-  if (items.length === 0) {
-    return undefined;
-  }
   let sum = 0;
   let count = 0;
   for (item of items) {
     const rating = await calculateAverageFoodRating(item._id);
     if (rating !== undefined) {
-      sum += await calculateAverageFoodRating(item._id);
+      sum += rating;
       count++;
     }
   }
-  return sum / items.length;
+  if (count === 0) {
+    return undefined;
+  }
+  return sum / count;
 }
 
 calculateAverageFoodRating = async (food) => {
@@ -140,7 +143,6 @@ calculateAverageFoodRating = async (food) => {
   if (reviews.length === 0) {
     return undefined;
   }
-  console.log(reviews);
   sum = 0;
   for (review of reviews) {
     sum += review.rating;
