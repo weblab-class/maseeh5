@@ -25,7 +25,9 @@ class UserReview extends Component {
         <div>Dining Hall: {this.props.venue}</div>
         <div>Food Item: {this.props.foodItem}</div>
         <div>Date: {new Date(this.props.date).toLocaleDateString(undefined, options)}</div>
-        <div>Rating: <Rating rating={this.props.rating} /></div>
+        <div>
+          Rating: <Rating rating={this.props.rating} />
+        </div>
         <p>Review: {this.props.content}</p>
       </div>
     );
