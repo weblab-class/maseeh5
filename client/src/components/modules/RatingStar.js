@@ -17,21 +17,17 @@ class RatingStar extends Component {
 
   componentDidMount() {}
 
-  handleClick = (event) => {
-    if (this.props.update) {
-      this.props.update(this.props.index);
-    }
-  };
-
   render() {
     return (
       <span
         className={this.props.update ? "u-pointer RatingStar-mutable" : ""}
-        onClick={this.handleClick}
+        onClick={this.props.update || undefined}
+        onMouseEnter={this.props.highlight}
+        onMouseLeave={this.props.unhighlight}
       >
-        {this.props.state ? "\u2605" : "\u2606"}
+        {this.props.state ? '\u2605' : '\u2606'}
       </span>
-    );
+    )
   }
 }
 

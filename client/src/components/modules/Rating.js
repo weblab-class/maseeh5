@@ -14,13 +14,30 @@ import "../../utilities.css";
 class Rating extends Component {
   constructor(props) {
     super(props);
+    this.state = {highlighted: 0}
   }
 
   componentDidMount() {}
 
-  update = (index) => {
+  updateFactory = (index) => {
+    return () => {
+      if (this.props.updateRating) {
+        this.props.updateRating(index);
+      }
+    }
+  }
+
+  highlightFactory = (index) => {
+    return () => {
+      if (this.props.updateRating) {
+        this.setState({highlighted: index})
+      }
+    }
+  }
+
+  unhighlight = () => {
     if (this.props.updateRating) {
-      this.props.updateRating(index);
+      this.setState({highlighted: 0})
     }
   };
 
@@ -28,14 +45,13 @@ class Rating extends Component {
     const indices = [1, 2, 3, 4, 5];
     return (
       <div className="Rating-box">
-        {indices.map((index) => (
-          <RatingStar
-            key={index}
-            index={index}
-            state={this.props.rating >= index}
-            update={this.props.updateRating && this.update}
-          />
-        ))}
+        {indices.map(index => <RatingStar
+          key={index}
+          state={this.state.highlighted >= index || !this.state.highlighted && this.props.rating && this.props.rating >= index}
+          update={this.props.updateRating && this.updateFactory(index)}
+          highlight={this.props.updateRating && this.highlightFactory(index)}
+          unhighlight={this.props.updateRating && this.unhighlight}
+        />)}
       </div>
     );
   }

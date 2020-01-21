@@ -13,9 +13,14 @@ import "../../utilities.css";
 class VenueCard extends Component {
   constructor(props) {
     super(props);
+    this.state = {rating: 3};
   }
 
   componentDidMount() {}
+
+  test = (rating) => {
+    this.setState({rating: rating});
+  };
 
   render() {
     return (
