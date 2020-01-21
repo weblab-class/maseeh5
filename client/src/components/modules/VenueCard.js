@@ -13,7 +13,6 @@ import "../../utilities.css";
 class VenueCard extends Component {
   constructor(props) {
     super(props);
-    this.state = {rating: 3};
   }
 
   componentDidMount() {}
@@ -23,7 +22,7 @@ class VenueCard extends Component {
       <>
         <div className="VenueCard-container u-textCenter">
           <div className="u-bold">{this.props.venue.name}</div>
-          <Rating rating={this.state.rating} />
+          <Rating rating={this.props.venue.rating} />
           <button className="VenueCard-button u-pointer">See More</button>
         </div>
       </>
