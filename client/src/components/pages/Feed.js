@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import NavBar from "../modules/NavBar";
+import FilterBox from "../modules/FilterBox";
+import FoodList from "../modules/FoodList";
+import VenueSelector from "../modules/VenueSelector";
 
 import "../../utilities.css";
 import "./Feed.css";
@@ -27,7 +31,11 @@ class Feed extends Component {
   }
 
   render() {
-    return <div></div>;
+    return (
+      <>
+        <NavBar userId={this.props.userId} handleLogout={this.props.handleLogout} />
+      </>
+    );
   }
 }
 

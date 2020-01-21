@@ -3,6 +3,7 @@ import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Login from "./pages/Login.js";
 import Home from "./pages/Home.js";
+import Feed from "./pages/Feed.js";
 
 import "../utilities.css";
 
@@ -51,11 +52,7 @@ class App extends Component {
       <>
         <Router>
           {this.state.userId ? (
-            <Home
-              path="/"
-              userId={this.state.userId}
-              handleLogout={this.handleLogout}
-            />
+            <Home path="/" userId={this.state.userId} handleLogout={this.handleLogout} />
           ) : (
             <Login
               path="/"
@@ -65,6 +62,7 @@ class App extends Component {
             />
           )}
           <NotFound default />
+          <Feed path="/feed/:venue" userId={this.state.userId} />
         </Router>
       </>
     );

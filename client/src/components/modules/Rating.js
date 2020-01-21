@@ -22,15 +22,22 @@ class Rating extends Component {
     if (this.props.updateRating) {
       this.props.updateRating(index);
     }
-  }
+  };
 
   render() {
-    const indices = [1,2,3,4,5];
+    const indices = [1, 2, 3, 4, 5];
     return (
       <div className="Rating-box">
-        {indices.map(index => <RatingStar key={index} index={index} state={this.props.rating >= index} update={this.props.updateRating && this.update} />)}
+        {indices.map((index) => (
+          <RatingStar
+            key={index}
+            index={index}
+            state={this.props.rating >= index}
+            update={this.props.updateRating && this.update}
+          />
+        ))}
       </div>
-    )
+    );
   }
 }
 
