@@ -5,7 +5,7 @@ import "./Rating.css";
 import "../../utilities.css";
 
 /**
- * Rating is a component for displaying and submit a number of stars.
+ * Rating is a component for displaying and submitting a number of stars.
  *
  * Proptypes
  * @param {Number} rating
