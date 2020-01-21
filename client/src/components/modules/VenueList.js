@@ -1,56 +1,32 @@
 import React, { Component } from "react";
-import VenueCard from "./VenueCard.js";
+import VenueCard from "./VenueCard";
 
 import "./VenueList.css";
 import "../../utilities.css";
 import { get } from "../../utilities";
 
 /**
- * VenueList is a component for displaying all of the Venue cards
+ * VenueList is a component for displaying all of the Venue cards.
  */
-
 class VenueList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      venues: [
-        {
-          _id: "lskdajflka",
-          name: "Maseeh",
-        },
-        {
-          _id: "aldkjfaldk",
-          name: "McCormick",
-        },
-        {
-          _id: "akjd",
-          name: "Baker",
-        },
-        {
-          _id: "kajf",
-          name: "Simmons",
-        },
-        {
-          _id: "slak",
-          name: "Next",
-        },
-      ],
+      venues: [],
     };
   }
 
-  //   componentDidMount() {
-  //     get(`/api/venues`).then((data) => {
-  //       this.setState({
-  //         venues: this.state.venues.concat([data]),
-  //       });
-  //     });
-  //   }
+  componentDidMount() {
+    get(`/api/venues`).then((venues) => {
+      this.setState({venues: venues});
+    });
+  }
 
   render() {
     return (
       <div className="VenueList-container u-flex u-flex-justifyCenter">
         {this.state.venues.map((venue) => (
-          <VenueCard venue={venue} />
+          <VenueCard key={venue._id} venue={venue} />
         ))}
       </div>
     );
