@@ -53,6 +53,7 @@
   font-weight: 300;
   font-size: 24px;
   margin: var(--l) var(--l);
+  color: var(--accent);
 }
 
 .Profile-reviews {
