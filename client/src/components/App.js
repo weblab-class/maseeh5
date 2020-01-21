@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Router } from "@reach/router";
+import { Router, navigate } from "@reach/router";
 import { socket } from "../client-socket";
 import { get, post } from "../utilities";
 
@@ -45,6 +45,7 @@ class App extends Component {
     console.log(`Logged out`);
     this.setState({ userId: undefined });
     post("/api/logout");
+    navigate("/");
   };
 
   render() {
@@ -61,7 +62,11 @@ class App extends Component {
               userId={this.state.userId}
             />
           )}
-          <Feed path="/feed/:venueId" userId={this.state.userId} />
+          <Feed
+            path="/feed/:venueId"
+            userId={this.state.userId}
+            handleLogout={this.handleLogout}
+          />
           <Profile
             path="/profile/:profileId"
             userId={this.state.userId}

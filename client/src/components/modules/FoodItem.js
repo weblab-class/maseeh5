@@ -53,13 +53,11 @@ class FoodItem extends Component {
   };
 
   newReviewSubmit = (newReview) => {
-    console.log(newReview);
     this.setState({reviews: this.state.reviews.concat(newReview)});
     this.setState({addingReview: false});
   };
 
   newReviewCancel = (newReview) => {
-    console.log("cancel");
     this.setState({addingReview: false});
   };
 
