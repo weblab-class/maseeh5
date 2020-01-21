@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Login from "./pages/Login.js";
+import Home from "./pages/Home.js";
 
 import "../utilities.css";
 
@@ -40,6 +41,7 @@ class App extends Component {
   };
 
   handleLogout = () => {
+    console.log(`Logged out`);
     this.setState({ userId: undefined });
     post("/api/logout");
   };
@@ -48,12 +50,20 @@ class App extends Component {
     return (
       <>
         <Router>
-          <Login
-            path="/"
-            handleLogin={this.handleLogin}
-            handleLogout={this.handleLogout}
-            userId={this.state.userId}
-          />
+          {this.state.userId ? (
+            <Home
+              path="/"
+              userId={this.state.userId}
+              handleLogout={this.handleLogout}
+            />
+          ) : (
+            <Login
+              path="/"
+              handleLogin={this.handleLogin}
+              handleLogout={this.handleLogout}
+              userId={this.state.userId}
+            />
+          )}
           <NotFound default />
         </Router>
       </>
