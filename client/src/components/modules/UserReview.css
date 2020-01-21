@@ -17,7 +17,7 @@
   background-color: var(--lightgray);
 
   /* font */
-  font: var(--secondaryFont);
+  font-family: var(--secondaryFont);
 
   text-align: left;
 }
