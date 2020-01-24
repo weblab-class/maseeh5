@@ -1,20 +1,17 @@
 import React, { Component } from "react";
-import Rating from "./Rating";
 import { post } from "../../utilities";
+import Rating from "./Rating";
 
-import "../../utilities.css";
 import "./NewReview.css";
 
 /**
  * NewReview is a component for adding a new review.
  *
- * @param {String} userId
  * @param {Date} venue
  * @param {Number} foodId
  * @param {function} onSubmit
  * @param {function} onCancel
  */
-
 class NewReview extends Component {
   constructor(props) {
     super(props);
@@ -29,12 +26,16 @@ class NewReview extends Component {
   };
 
   updateContent = (event) => {
-    this.setState({content: event.target.value});
+    this.setState({ content: event.target.value });
   };
 
   submit = () => {
     if (this.state.content && this.state.rating) {
-      post("/api/review", {food_id: this.props.foodId, rating: this.state.rating, content: this.state.content}).then((result) => this.props.onSubmit(result));
+      post("/api/review", {
+        food_id: this.props.foodId,
+        rating: this.state.rating,
+        content: this.state.content,
+      }).then((result) => this.props.onSubmit(result));
     }
   };
 
@@ -43,14 +44,25 @@ class NewReview extends Component {
       <>
         <div className="NewReview-container">
           <div className="u-flex">
-            <div>My Rating:&emsp;<Rating updateRating={this.updateRating} rating={this.state.rating} /></div>
+            <div>
+              My Rating:&emsp;
+              <Rating updateRating={this.updateRating} rating={this.state.rating} />
+            </div>
           </div>
           <div className="NewReview-textarea">
-            <textarea type="text" placeholder="Write your review here" onChange={this.updateContent} />
+            <textarea
+              type="text"
+              placeholder="Write your review here"
+              onChange={this.updateContent}
+            />
           </div>
           <div className="NewReview-flexRight">
-            <button className="NewReview-cancel u-pointer" onClick={this.props.onCancel}>Cancel</button>
-            <button className="NewReview-submit u-pointer" onClick={this.submit}>Submit</button>
+            <button className="NewReview-cancel u-pointer" onClick={this.props.onCancel}>
+              Cancel
+            </button>
+            <button className="NewReview-submit u-pointer" onClick={this.submit}>
+              Submit
+            </button>
           </div>
         </div>
       </>

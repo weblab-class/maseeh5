@@ -1,9 +1,8 @@
 import React, { Component } from "react";
+import { get } from "../../utilities";
 import VenueCard from "./VenueCard";
 
 import "./VenueList.css";
-import "../../utilities.css";
-import { get } from "../../utilities";
 
 /**
  * VenueList is a component for displaying all of the Venue cards.
@@ -18,7 +17,7 @@ class VenueList extends Component {
 
   componentDidMount() {
     get(`/api/venues`).then((venues) => {
-      this.setState({venues: venues});
+      this.setState({ venues: venues });
     });
   }
 

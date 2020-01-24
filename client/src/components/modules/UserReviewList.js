@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { get } from "../../utilities";
 import UserReview from "./UserReview";
 
-import "../../utilities.css";
-
 class UserReviewList extends Component {
   constructor(props) {
     super(props);

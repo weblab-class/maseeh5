@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../modules/Navbar";
 
-import "../../utilities.css";
-
 class NotFound extends Component {
   constructor(props) {
     super(props);

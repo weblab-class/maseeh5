@@ -1,14 +1,19 @@
-.FoodItem-foodName {
-  font-size: var(--m);
-}
-
 .FoodItem-container {
+  font-size: var(--m);
   background-color: var(--lightgray);
   color: var(--secondary);
   border-radius: var(--xs) var(--xs) 0 0;
   margin: 0 0 var(--s) 0;
   padding: var(--s);
   height: var(--l);
+}
+
+.FoodItem-container:hover {
+  background-color: var(--medgray);
+}
+
+.FoodItem-empty {
+  width: 80px;
 }
 
 .FoodItem-addReview {
