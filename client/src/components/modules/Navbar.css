@@ -13,12 +13,6 @@
   vertical-align: top;
 }
 
-.Navbar-link:visited {
-  color: var(--white);
-  opacity: 0.6;
-  text-decoration: none;
-}
-
 .Navbar-link:hover {
   opacity: 0.8;
 }

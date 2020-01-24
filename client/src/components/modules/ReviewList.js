@@ -3,7 +3,6 @@ import Review from "./Review";
 
 import "./ReviewList.css";
 import "../../utilities.css";
-import { get } from "../../utilities";
 
 /**
  * ReviewList is a component for displaying all of the reviews for each food item.
@@ -23,11 +22,11 @@ class ReviewList extends Component {
       if (this.props.reviews.length !== 0) {
         reviewCards = this.props.reviews.map((reviewObj) => (
           <Review
-            key={`Card_${reviewObj._id}`}
-            //date={reviewObj.timestamp}
+            key={reviewObj._id}
+            date={reviewObj.timestamp}
             reviewRating={reviewObj.rating}
             content={reviewObj.content}
-            userName={reviewObj.creator.name}
+            user={reviewObj.creator}
           />
         ));
       } else {
