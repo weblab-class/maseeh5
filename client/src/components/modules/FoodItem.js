@@ -53,12 +53,10 @@ class FoodItem extends Component {
   render() {
     return (
       <div className="FoodItem-largeContainer">
-        <div className="FoodItem-container">
-          <div onClick={this.toggleExpanded} className="u-pointer u-flex-between">
-            <Rating rating={this.props.foodRating} />
-            <div className="FoodItem-foodName u-bold u-flex-justifyCenter">{this.props.name}</div>
-            <div className="FoodItem-empty"> </div>
-          </div>
+        <div className="FoodItem-container u-pointer u-flex-between" onClick={this.toggleExpanded}>
+          <Rating rating={this.props.foodRating} />
+          <div className="u-bold u-flex-justifyCenter">{this.props.name}</div>
+          <div className="FoodItem-empty" />
         </div>
 
         {/* displays review list when expanded */}

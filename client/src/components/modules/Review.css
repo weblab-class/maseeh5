@@ -22,3 +22,7 @@
 .Review-rating {
   margin: 0 0 0 var(--s);
 }
+
+.Review-date {
+  font-style: italic;
+}
