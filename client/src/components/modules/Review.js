@@ -26,22 +26,20 @@ class Review extends Component {
       minute: "numeric",
     };
     return (
-      <>
-        <div className="Review-container">
-          <div className="u-flex-between">
-            <div className="u-flex">
-              <Link to={`/profile/${this.props.user._id}`} className="Review-userLink u-bold">
-                {this.props.user.name}
-              </Link>
-              <div className="Review-date">
-                &ensp;({new Date(this.props.timestamp).toLocaleDateString(undefined, options)})
-              </div>
+      <div className="Review-container">
+        <div className="u-flex-between">
+          <div className="u-flex">
+            <Link to={`/profile/${this.props.user._id}`} className="Review-userLink u-bold">
+              {this.props.user.name}
+            </Link>
+            <div className="Review-date">
+              &ensp;({new Date(this.props.timestamp).toLocaleDateString(undefined, options)})
             </div>
-            <div className="u-flex">
-              <div className="Review-rating">
-                Rating:&emsp;
-                <Rating rating={this.props.reviewRating} />
-              </div>
+          </div>
+          <div className="u-flex">
+            <div className="Review-rating">
+              Rating:&emsp;
+              <Rating rating={this.props.reviewRating} />
             </div>
           </div>
         </div>
