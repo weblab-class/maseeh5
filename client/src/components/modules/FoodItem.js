@@ -1,12 +1,10 @@
 import React, { Component } from "react";
+import { get } from "../../utilities";
 import ReviewList from "./ReviewList";
 import NewReview from "./NewReview";
 import Rating from "./Rating";
 
 import "./FoodItem.css";
-import "../../utilities.css";
-
-import { get } from "../../utilities";
 
 /**
  * FoodItem is a component for creating cards for each foodItem.
@@ -17,7 +15,6 @@ import { get } from "../../utilities";
  * @param {String} name
  * @param {String} foodId
  */
-
 class FoodItem extends Component {
   constructor(props) {
     super(props);
@@ -29,64 +26,53 @@ class FoodItem extends Component {
   }
 
   componentDidMount() {
-    get("/api/reviews", {food_id: this.props.foodId}).then((data) => {
-      this.setState({reviews: data});
+    get("/api/reviews", { food_id: this.props.foodId }).then((data) => {
+      this.setState({ reviews: data });
     });
   }
 
-  // Adjusts information displayed on cards when + or - is clicked
-  expand = () => {
-    this.setState({expanded: true});
-  };
-  minimize = () => {
-    this.setState({expanded: false});
+  // Displays review list portion of card
+  toggleExpanded = () => {
+    this.setState({ expanded: !this.state.expanded });
   };
 
   // Displays add review portion of card
-  changeAddReview = () => {
-    if (this.state.addingReview === false) {
-      this.setState({addingReview: true});
-    } else {
-      this.setState({addingReview: false});
-    }
+  toggleAdd = () => {
+    this.setState({ addingReview: !this.state.addingReview });
   };
 
   newReviewSubmit = (newReview) => {
-    this.setState({reviews: this.state.reviews.concat(newReview)});
-    this.setState({addingReview: false});
+    this.setState({ reviews: this.state.reviews.concat(newReview) });
+    this.setState({ addingReview: false });
   };
 
   newReviewCancel = (newReview) => {
-    this.setState({addingReview: false});
+    this.setState({ addingReview: false });
   };
 
   render() {
     return (
       <div className="FoodItem-largeContainer">
-        <div className="FoodItem-container u-flex-between">
-          <Rating rating={this.props.foodRating} />
-          <div className="FoodItem-foodName u-bold u-flex-justifyCenter">{this.props.name}</div>
-          {this.state.expanded ? (
-            <div className="u-flexColumn">
-              <div onClick={this.minimize} className="u-pointer">
-                -
-              </div>
-            </div>
-          ) : (
-            <div onClick={this.expand} className="u-pointer">
-              +
-            </div>
-          )}
+        <div className="FoodItem-container">
+          <div onClick={this.toggleExpanded} className="u-pointer u-flex-between">
+            <Rating rating={this.props.foodRating} />
+            <div className="FoodItem-foodName u-bold u-flex-justifyCenter">{this.props.name}</div>
+            <div className="FoodItem-empty"> </div>
+          </div>
         </div>
 
         {/* displays review list when expanded */}
         {this.state.expanded && (
-          <ReviewList className="FoodItem-reviewList" foodId={this.props.foodId} reviews={this.state.reviews} />
+          <ReviewList
+            className="FoodItem-reviewList"
+            foodId={this.props.foodId}
+            reviews={this.state.reviews}
+          />
         )}
 
         {/* displays add review link when not adding review */}
         {this.state.expanded && !this.state.addingReview && (
-          <div className="u-textCenter FoodItem-addReview u-pointer" onClick={this.changeAddReview}>
+          <div className="FoodItem-addReview u-textCenter u-pointer" onClick={this.toggleAdd}>
             Add Review
           </div>
         )}
@@ -94,7 +80,12 @@ class FoodItem extends Component {
         {/* displays text fields to add review  */}
         {this.state.expanded && this.state.addingReview && (
           <div className="FoodItem-newReview">
-            <NewReview venue={this.props.venue} foodId={this.props.foodId} onSubmit={this.newReviewSubmit} onCancel={this.newReviewCancel}/>
+            <NewReview
+              venue={this.props.venue}
+              foodId={this.props.foodId}
+              onSubmit={this.newReviewSubmit}
+              onCancel={this.newReviewCancel}
+            />
           </div>
         )}
       </div>
