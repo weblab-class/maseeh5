@@ -23,7 +23,7 @@ class ReviewList extends Component {
         reviewCards = this.props.reviews.map((reviewObj) => (
           <Review
             key={reviewObj._id}
-            date={reviewObj.timestamp}
+            timestamp={reviewObj.timestamp}
             reviewRating={reviewObj.rating}
             content={reviewObj.content}
             user={reviewObj.creator}
