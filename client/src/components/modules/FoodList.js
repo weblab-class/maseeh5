@@ -1,9 +1,8 @@
 import React, { Component } from "react";
+import { get } from "../../utilities";
 import FoodItem from "./FoodItem";
 
 import "./FoodList.css";
-import "../../utilities.css";
-import { get } from "../../utilities";
 
 /**
  * FoodList is a component for displaying all of the FoodItem cards.
@@ -31,18 +30,14 @@ class FoodList extends Component {
   render() {
     let foodCards = this.state.foodItems.map((foodObj) => (
       <FoodItem
-        key={`Card_${foodObj._id}`}
+        key={foodObj._id}
         venue={foodObj.venue}
         foodRating={foodObj.rating}
         name={foodObj.name}
         foodId={foodObj._id}
       />
     ));
-    return (
-      <>
-        <div className="FoodList-cards">{foodCards}</div>
-      </>
-    );
+    return <div className="FoodList-cards">{foodCards}</div>;
   }
 }
 

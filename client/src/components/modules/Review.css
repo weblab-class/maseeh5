@@ -1,5 +1,12 @@
-.Review-userName {
+.Review-userLink {
+  color: var(--secondary);
+  font-family: var(--secondary);
   font-size: var(--m);
+  text-decoration: none;
+}
+
+.Review-userLink:hover {
+  opacity: 0.8;
 }
 
 .Review-container {
@@ -14,4 +21,8 @@
 
 .Review-rating {
   margin: 0 0 0 var(--s);
+}
+
+.Review-date {
+  font-style: italic;
 }

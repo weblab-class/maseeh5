@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import RatingStar from "./RatingStar";
 
 import "./Rating.css";
-import "../../utilities.css";
 
 /**
  * Rating is a component for displaying and submitting a number of stars.
@@ -14,7 +13,7 @@ import "../../utilities.css";
 class Rating extends Component {
   constructor(props) {
     super(props);
-    this.state = {highlighted: 0}
+    this.state = { highlighted: 0 };
   }
 
   updateFactory = (index) => {
@@ -22,20 +21,20 @@ class Rating extends Component {
       if (this.props.updateRating) {
         this.props.updateRating(index);
       }
-    }
-  }
+    };
+  };
 
   highlightFactory = (index) => {
     return () => {
       if (this.props.updateRating) {
-        this.setState({highlighted: index})
+        this.setState({ highlighted: index });
       }
-    }
-  }
+    };
+  };
 
   unhighlight = () => {
     if (this.props.updateRating) {
-      this.setState({highlighted: 0})
+      this.setState({ highlighted: 0 });
     }
   };
 
@@ -43,13 +42,18 @@ class Rating extends Component {
     const indices = [1, 2, 3, 4, 5];
     return (
       <div className="Rating-box">
-        {indices.map(index => <RatingStar
-          key={index}
-          state={this.state.highlighted >= index || !this.state.highlighted && this.props.rating && this.props.rating >= index}
-          update={this.props.updateRating && this.updateFactory(index)}
-          highlight={this.props.updateRating && this.highlightFactory(index)}
-          unhighlight={this.props.updateRating && this.unhighlight}
-        />)}
+        {indices.map((index) => (
+          <RatingStar
+            key={index}
+            state={
+              this.state.highlighted >= index ||
+              (!this.state.highlighted && this.props.rating && this.props.rating >= index)
+            }
+            update={this.props.updateRating && this.updateFactory(index)}
+            highlight={this.props.updateRating && this.highlightFactory(index)}
+            unhighlight={this.props.updateRating && this.unhighlight}
+          />
+        ))}
       </div>
     );
   }

@@ -4,7 +4,7 @@
   font-size: var(--l);
   border-radius: var(--s);
   padding: 5px 20px;
-  height: 5%;
+  height: auto;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
   font-family: var(--primaryFont);
   margin: 0 20px 10px 0;

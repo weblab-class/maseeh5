@@ -3,7 +3,6 @@ import { get } from "../../utilities";
 import Navbar from "../modules/Navbar";
 import UserReviewList from "../modules/UserReviewList";
 
-import "../../utilities.css";
 import "./Profile.css";
 
 /**
@@ -30,7 +29,7 @@ class Profile extends Component {
 
   render() {
     if (!this.state.user) {
-      return <div> Loading! </div>;
+      return <div>Loading...</div>;
     }
     return (
       <>

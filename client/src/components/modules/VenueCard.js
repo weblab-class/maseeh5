@@ -3,7 +3,6 @@ import { Link } from "@reach/router";
 import Rating from "./Rating";
 
 import "./VenueCard.css";
-import "../../utilities.css";
 
 /**
  * VenueCard is a component for displaying the information for a single venue.
@@ -18,15 +17,15 @@ class VenueCard extends Component {
 
   render() {
     return (
-      <>
-        <div className="VenueCard-container u-textCenter">
-          <div className="VenueCard-title u-bold">{this.props.venue.name}</div>
-          <div className="VenueCard-ratingBox">Average Rating: <Rating rating={this.props.venue.rating} /></div>
-          <Link to={`/feed/${this.props.venue._id}`}>
-            <button className="VenueCard-button u-pointer">See More</button>
-          </Link>
+      <div className="VenueCard-container u-textCenter">
+        <div className="VenueCard-title u-bold">{this.props.venue.name}</div>
+        <div className="VenueCard-ratingBox">
+          Average Rating: <Rating rating={this.props.venue.rating} />
         </div>
-      </>
+        <Link to={`/feed/${this.props.venue._id}`}>
+          <button className="VenueCard-button u-pointer">See More</button>
+        </Link>
+      </div>
     );
   }
 }

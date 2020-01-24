@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import { navigate } from "@reach/router"
-import { get, post } from "../../utilities";
+import { navigate } from "@reach/router";
+import { get } from "../../utilities";
 
-import "../../utilities.css";
 import "./VenueSelector.css";
-
 
 /**
  * VenueSelector is a component for switching the venue the user is viewing
@@ -22,25 +20,30 @@ class VenueSelector extends Component {
 
   componentDidMount() {
     get("/api/venues").then((data) => {
-      this.setState({venues: data});
+      this.setState({ venues: data });
     });
   }
 
   handleSelect = (event) => {
     navigate(`/feed/${event.target.value}`).then(() => window.location.reload());
-  }
+  };
 
   render() {
+    if (!this.state.venues) {
+      return <div className="VenueSelector-pageLoading">Loading...</div>;
+    }
     return (
-      <>
-        {this.state.venues ? (
-          <select className="VenueSelector-card" value={this.props.venueId} onChange={this.handleSelect}>
-            {this.state.venues.map((venueObj) => <option className="VenueSelector-option" key={venueObj._id} value={venueObj._id}>{venueObj.name}</option>)}
-          </select>
-        ) : (
-          <div className="VenueSelector-pageLoading">Loading...</div>
-        )}
-      </>
+      <select
+        className="VenueSelector-card"
+        value={this.props.venueId}
+        onChange={this.handleSelect}
+      >
+        {this.state.venues.map((venueObj) => (
+          <option className="VenueSelector-option" key={venueObj._id} value={venueObj._id}>
+            {venueObj.name}
+          </option>
+        ))}
+      </select>
     );
   }
 }

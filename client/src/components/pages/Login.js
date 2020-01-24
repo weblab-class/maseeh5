@@ -1,23 +1,20 @@
 import React, { Component } from "react";
-import LoginCard from "../modules/LoginCard";
 import Navbar from "../modules/Navbar";
+import LoginCard from "../modules/LoginCard";
 
-import "../../utilities.css";
 import "./Login.css";
 
 /**
- * Login is a component for logging in to the app
+ * Login is a page for logging in to the app
  *
  * Proptypes
  * @param {string} userId
  * @param {function} handleLogin
  * @param {function} handleLogout
  */
-
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
   }
 
   componentDidMount() {
