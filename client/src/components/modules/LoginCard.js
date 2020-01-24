@@ -3,7 +3,6 @@ import GoogleLogin, { GoogleLogout } from "react-google-login";
 const GOOGLE_CLIENT_ID = "391573326550-t7jv56qpqp8gg5j5ntuunn7akl20b58l.apps.googleusercontent.com";
 
 import "./LoginCard.css";
-import "../../utilities.css";
 
 /**
  * LoginCard is a component for displaying site information and logging in.

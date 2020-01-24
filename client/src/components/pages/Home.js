@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Navbar from "../modules/Navbar";
 import VenueList from "../modules/VenueList";
 
-import "../../utilities.css";
 import "./Home.css";
 
 /**
@@ -12,7 +11,6 @@ import "./Home.css";
  * @param {string} userId
  * @param {function} handleLogout
  */
-
 class Home extends Component {
   constructor(props) {
     super(props);

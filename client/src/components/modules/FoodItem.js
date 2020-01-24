@@ -1,12 +1,10 @@
 import React, { Component } from "react";
+import { get } from "../../utilities";
 import ReviewList from "./ReviewList";
 import NewReview from "./NewReview";
 import Rating from "./Rating";
 
 import "./FoodItem.css";
-import "../../utilities.css";
-
-import { get } from "../../utilities";
 
 /**
  * FoodItem is a component for creating cards for each foodItem.
@@ -17,7 +15,6 @@ import { get } from "../../utilities";
  * @param {String} name
  * @param {String} foodId
  */
-
 class FoodItem extends Component {
   constructor(props) {
     super(props);
@@ -34,22 +31,14 @@ class FoodItem extends Component {
     });
   }
 
-  // Adjusts information displayed on cards when + or - is clicked
-  toggle = () => {
-    if (this.state.expanded === false) {
-      this.setState({ expanded: true });
-    } else {
-      this.setState({ expanded: false });
-    }
+  // Displays review list portion of card
+  toggleExpanded = () => {
+    this.setState({ expanded: !this.state.expanded });
   };
 
   // Displays add review portion of card
-  changeAddReview = () => {
-    if (this.state.addingReview === false) {
-      this.setState({ addingReview: true });
-    } else {
-      this.setState({ addingReview: false });
-    }
+  toggleAdd = () => {
+    this.setState({ addingReview: !this.state.addingReview });
   };
 
   newReviewSubmit = (newReview) => {
@@ -65,7 +54,7 @@ class FoodItem extends Component {
     return (
       <div className="FoodItem-largeContainer">
         <div className="FoodItem-container">
-          <div onClick={this.toggle} className="u-pointer u-flex-between">
+          <div onClick={this.toggleExpanded} className="u-pointer u-flex-between">
             <Rating rating={this.props.foodRating} />
             <div className="FoodItem-foodName u-bold u-flex-justifyCenter">{this.props.name}</div>
             <div className="FoodItem-empty"> </div>
@@ -83,7 +72,7 @@ class FoodItem extends Component {
 
         {/* displays add review link when not adding review */}
         {this.state.expanded && !this.state.addingReview && (
-          <div className="u-textCenter FoodItem-addReview u-pointer" onClick={this.changeAddReview}>
+          <div className="FoodItem-addReview u-textCenter u-pointer" onClick={this.toggleAdd}>
             Add Review
           </div>
         )}

@@ -3,7 +3,6 @@ import { Link } from "@reach/router";
 import Rating from "./Rating";
 
 import "./Review.css";
-import "../../utilities.css";
 
 /**
  * Review is a component for displaying a single review.
@@ -13,7 +12,6 @@ import "../../utilities.css";
  * @param {number} reviewRating
  * @param {String} content
  */
-
 class Review extends Component {
   constructor(props) {
     super(props);
@@ -46,9 +44,9 @@ class Review extends Component {
               </div>
             </div>
           </div>
-          <div className="Review-content">{this.props.content}</div>
         </div>
-      </>
+        <div className="Review-content">{this.props.content}</div>
+      </div>
     );
   }
 }
