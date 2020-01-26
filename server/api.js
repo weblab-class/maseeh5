@@ -65,11 +65,11 @@ router.post("/venue", auth.ensureLoggedIn, (req, res) => {
 });
 
 router.get("/foods", (req, res) => {
-  let query = { venue: req.query.venue_id };
+  const query = { venue: req.query.venue_id };
   if (req.query.search) {
     query.$text = { $search: req.query.search };
   }
-  let sort = req.query.sort_by === "name" ? { name: 1 } : {};
+  const sort = req.query.sort_by === "name" ? { name: 1 } : {};
   FoodItem.find(query)
     .sort(sort)
     .populate("venue")
@@ -108,10 +108,30 @@ router.get("/reviews", (req, res) => {
   if (req.query.food_id) {
     query.food = req.query.food_id;
   }
+  if (req.query.search) {
+    query.$text = { $search: req.query.search };
+  }
+  const sort = !req.query.sort_by || req.query.sort_by === "date" ? { timestamp: -1 } : {};
   Review.find(query)
+    .sort(sort)
     .populate("creator")
-    .populate({ path: "food", populate: { path: "venue" } })
-    .then((reviews) => res.send(reviews));
+    .populate({
+      path: "food",
+      options: req.query.sort_by === "food" ? { sort: { name: 1 } } : {},
+      populate: {
+        path: "venue",
+        options: req.query.sort_by === "venue" ? { sort: { name: 1 } } : {},
+      },
+    })
+    .then((reviews) => {
+      if (req.query.min_rating > 0) {
+        reviews = reviews.filter((review) => review.rating >= req.query.min_rating);
+      }
+      if (req.query.sort_by === "rating") {
+        reviews.sort((review1, review2) => review2.rating - review1.rating);
+      }
+      res.send(reviews);
+    });
 });
 
 router.post("/review", auth.ensureLoggedIn, (req, res) => {
