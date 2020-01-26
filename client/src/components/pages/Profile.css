@@ -1,16 +1,15 @@
 .Profile-avatarContainer {
-  padding: 0 35%;
+  padding: 0 0 0 20px;
   margin: 0 0 25px 0;
 }
 
 .Profile-avatar {
   /* make it responsive */
-  max-width: 50%;
-  width: 50%;
-  height: auto;
+  width: 100px;
+  height: 100px;
   display: block;
   /* div height to be the same as width*/
-  padding-top: 50%;
+  /* padding-top: 50%; */
 
   /* make it a circle */
   border-radius: 50%;
@@ -32,8 +31,10 @@
 }
 
 .Profile-name {
-  font-size: 40px;
+  font-size: 20px;
   font-weight: 300;
+  padding: 0px 20px;
+  color: var(--secondary);
 }
 
 .Profile-line {
