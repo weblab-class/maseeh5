@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { get } from "../../utilities";
 import Navbar from "../modules/Navbar";
 import UserReviewList from "../modules/UserReviewList";
+import FilterBox from "../modules/FilterBox";
 
 import "./Profile.css";
 
@@ -17,6 +18,9 @@ class Profile extends Component {
     super(props);
     this.state = {
       user: undefined,
+      filterRating: 0,
+      search: "",
+      orderBy: "name",
     };
   }
 
@@ -26,6 +30,18 @@ class Profile extends Component {
       this.setState({ user: user })
     );
   }
+
+  updateRating = (value) => {
+    this.setState({ filterRating: value });
+  };
+
+  updateSearch = (value) => {
+    this.setState({ search: value });
+  };
+
+  updateOrderBy = (value) => {
+    this.setState({ orderBy: value });
+  };
 
   render() {
     if (!this.state.user) {
@@ -43,6 +59,14 @@ class Profile extends Component {
           <div className="Profile-subContainer u-textCenter">
             <h4 className="Profile-subTitle u-underline">Reviews</h4>
           </div>
+          <FilterBox
+            rating={this.state.filterRating}
+            search={this.state.search}
+            orderBy={this.state.orderBy}
+            updateRating={this.updateRating}
+            updateSearch={this.updateSearch}
+            updateOrderBy={this.updateOrderBy}
+          />
           <UserReviewList user={this.props.profileId} />
         </div>
       </>
