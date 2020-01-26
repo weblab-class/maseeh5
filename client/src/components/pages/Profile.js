@@ -10,6 +10,7 @@ import "./Profile.css";
  *
  * Proptypes
  * @param {string} userId
+ * @param {string} profileId
  * @param {function} handleLogout
  */
 class Profile extends Component {

@@ -43,8 +43,6 @@
   background-position-y: center;
   background-position-x: center;
 
-  background-image: url("../../public/corgi.jpg");
-  background-repeat: no-repeat;
   background-size: cover;
 }
 

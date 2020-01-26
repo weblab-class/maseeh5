@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { GoogleLogout } from "react-google-login";
 import { Link } from "@reach/router";
+import { get } from "../../utilities";
 
 import "./Navbar.css";
 
@@ -16,6 +17,13 @@ const GOOGLE_CLIENT_ID = "391573326550-t7jv56qpqp8gg5j5ntuunn7akl20b58l.apps.goo
 class Navbar extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      user: undefined,
+    };
+  }
+
+  componentDidMount() {
+    get(`/api/user`, { user_id: this.props.userId }).then((user) => this.setState({ user: user }));
   }
 
   render() {
@@ -40,7 +48,14 @@ class Navbar extends Component {
               onFailure={(err) => console.log(err)}
             />
             <Link to={`/profile/${this.props.userId}`} className="Navbar-link">
-              <div className="Navbar-image" />
+              {this.state.user && (
+                <div
+                  className="Navbar-image"
+                  style={{
+                    backgroundImage: `url(${this.state.user.pictureurl})`,
+                  }}
+                />
+              )}
             </Link>
           </div>
         )}
