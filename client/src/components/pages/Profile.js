@@ -21,7 +21,7 @@ class Profile extends Component {
       user: undefined,
       filterRating: 0,
       search: "",
-      orderBy: "name",
+      orderBy: "date",
     };
   }
 
@@ -73,7 +73,12 @@ class Profile extends Component {
             updateSearch={this.updateSearch}
             updateOrderBy={this.updateOrderBy}
           />
-          <UserReviewList user={this.props.profileId} />
+          <UserReviewList
+            user={this.props.profileId}
+            filterRating={this.state.filterRating}
+            search={this.state.search}
+            orderBy={this.state.orderBy}
+          />
         </div>
       </>
     );

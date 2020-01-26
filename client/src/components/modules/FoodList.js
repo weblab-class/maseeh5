@@ -27,9 +27,7 @@ class FoodList extends Component {
       search: this.props.search,
       min_rating: this.props.filterRating,
       sort_by: this.props.orderBy,
-    }).then((foodObjs) => {
-      this.setState({ foodItems: foodObjs });
-    });
+    }).then((foodObjs) => this.setState({ foodItems: foodObjs }));
   };
 
   componentDidMount() {
