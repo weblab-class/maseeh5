@@ -1,0 +1,5 @@
+.ReviewList-empty {
+  font-family: var(--secondaryFont);
+  color: var(--secondary);
+  padding: 0 0 var(--s) var(--s);
+}

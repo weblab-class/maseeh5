@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-import "../../utilities.css";
-
 /**
  * Rating is a component for displaying a single star.
  *
@@ -23,9 +21,9 @@ class RatingStar extends Component {
         onMouseEnter={this.props.highlight}
         onMouseLeave={this.props.unhighlight}
       >
-        {this.props.state ? '\u2605' : '\u2606'}
+        {this.props.state ? "\u2605" : "\u2606"}
       </span>
-    )
+    );
   }
 }
 
