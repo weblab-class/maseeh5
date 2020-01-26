@@ -1,15 +1,16 @@
 .Profile-avatarContainer {
   padding: 0 35%;
+  margin: 0 0 25px 0;
 }
 
 .Profile-avatar {
   /* make it responsive */
-  max-width: 75%;
-  width: 75%;
+  max-width: 50%;
+  width: 50%;
   height: auto;
   display: block;
   /* div height to be the same as width*/
-  padding-top: 75%;
+  padding-top: 50%;
 
   /* make it a circle */
   border-radius: 50%;
@@ -28,7 +29,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url("../../public/corgi.jpg");
 }
 
 .Profile-name {

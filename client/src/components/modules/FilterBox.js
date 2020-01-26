@@ -42,8 +42,8 @@ class FilterBox extends Component {
           value={this.props.search}
           onChange={this.handleSearch}
         />
-        <div className="FilterBox-orderBy">
-          Order By:
+        <div className="FilterBox-ordering">
+          <div className="FilterBox-orderBy">Order By:</div>
           <select
             className="FilterBox-dropdown"
             value={this.props.orderBy}

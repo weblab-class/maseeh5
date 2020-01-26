@@ -11,6 +11,7 @@ import "./Profile.css";
  *
  * Proptypes
  * @param {string} userId
+ * @param {string} profileId
  * @param {function} handleLogout
  */
 class Profile extends Component {
@@ -52,7 +53,12 @@ class Profile extends Component {
         <Navbar userId={this.props.userId} handleLogout={this.props.handleLogout} />
         <h1 className="Profile-name u-textCenter">{this.state.user.name}</h1>
         <div className="Profile-avatarContainer">
-          <div className="Profile-avatar" />
+          <div
+            className="Profile-avatar"
+            style={{
+              backgroundImage: `url(${this.state.user.pictureurl}), url("../../public/corgi.jpg")`,
+            }}
+          />
         </div>
         <hr className="Profile-line" />
         <div className="u-flex-justifyCenter Profile-reviews">

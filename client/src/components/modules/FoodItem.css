@@ -9,7 +9,7 @@
 }
 
 .FoodItem-container:hover {
-  background-color: var(--medgray);
+  background-color: #d9d9d9;
 }
 
 .FoodItem-empty {

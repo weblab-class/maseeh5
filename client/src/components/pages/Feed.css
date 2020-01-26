@@ -5,6 +5,7 @@
 
 .Feed-filterContainer {
   width: 240px;
+  margin: 0 var(--l) 0 0;
 }
 
 .Feed-foodList {
