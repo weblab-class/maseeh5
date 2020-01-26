@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { get } from "../../utilities";
 import Navbar from "../modules/Navbar";
 import UserReviewList from "../modules/UserReviewList";
-import FilterBox from "../modules/FilterBox";
+import ProfileFilterBox from "../modules/ProfileFilterBox";
 
 import "./Profile.css";
 
@@ -59,7 +59,7 @@ class Profile extends Component {
           <div className="Profile-subContainer u-textCenter">
             <h4 className="Profile-subTitle u-underline">Reviews</h4>
           </div>
-          <FilterBox
+          <ProfileFilterBox
             rating={this.state.filterRating}
             search={this.state.search}
             orderBy={this.state.orderBy}
