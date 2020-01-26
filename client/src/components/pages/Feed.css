@@ -1,8 +1,12 @@
-.Feed-foodList {
+.Feed-container {
+  margin: 30px;
   width: auto;
 }
 
-.Feed-container {
-  margin: 30px;
+.Feed-filterContainer {
+  width: 240px;
+}
+
+.Feed-foodList {
   width: auto;
 }

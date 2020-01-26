@@ -47,3 +47,18 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.Navbar-logo {
+  height: 32px;
+  width: 100px;
+
+  margin-top: 2.5px;
+
+  /* Centering on image`s center*/
+  background-position-y: center;
+  background-position-x: center;
+
+  background-image: url("../../public/logo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}

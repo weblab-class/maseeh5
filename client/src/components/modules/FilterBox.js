@@ -1,72 +1,59 @@
 import React, { Component } from "react";
-import { navigate } from "@reach/router";
-import { get, post } from "../../utilities";
 import Rating from "./Rating";
 
-import "../../utilities.css";
 import "./FilterBox.css";
 
 /**
  * FilterBox is used to switch how the information on the page displays
  *
  * Proptypes
- * @param {String} ratings
- * @param {String} alphabetical
+ * @param {Number} rating
+ * @param {String} search
+ * @param {String} orderBy
+ * @param {Function} updateRating
+ * @param {Function} updateSearch
+ * @param {Function} updateOrderBy
  */
 class FilterBox extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      rating: 0,
-    };
   }
 
-  updateRating = (value) => {
-    this.setState({ rating: value });
+  handleSearch = (event) => {
+    this.props.updateSearch(event.target.value);
   };
 
-  componentDidMount() {
-    get("/api/ratings").then((data) => {
-      this.setState({ ratings: data });
-    });
-  }
-
   handleSelect = (event) => {
-    navigate(`/feed/${event.target.value}`).then(() => window.location.reload());
+    this.props.updateOrderBy(event.target.value);
   };
 
   render() {
     return (
-      <>
-        <div className="FilterSelector-card centerText">
-          Filter
-          <p className="MakeMedium">
-            <div>
-              Rating:
-              <Rating updateRating={this.updateRating} rating={this.state.rating} />
-            </div>
-          </p>
-          <input type="text" className="FilterBar" placeholder="Search" />
-          <select className="Orderby-DropDown" value="alphabetical">
-            <option>Name</option>
-          </select>
+      <div className="FilterBox-card u-textCenter">
+        <div className="FilterBox-title">Filter</div>
+        <div className="FilterBox-rating">
+          Minimum Rating:
+          <Rating updateRating={this.props.updateRating} rating={this.props.rating} />
         </div>
-        {/* {this.state.ratings ? (
+        <input
+          className="FilterBox-search"
+          type="text"
+          placeholder="Search"
+          value={this.props.search}
+          onChange={this.handleSearch}
+        />
+        <div className="FilterBox-orderBy">
+          Order By:
           <select
-            className="FilterSelector-card"
-            value={this.props.venueId}
+            className="FilterBox-dropdown"
+            value={this.props.orderBy}
             onChange={this.handleSelect}
           >
-            {this.state.venues.map((venueObj) => (
-              <option className="FilterSelector-option" key={venueObj._id} value={venueObj._id}>
-                {venueObj.name}
-              </option>
-            ))}
+            <option value="name">Name</option>
+            <option value="rating">Rating</option>
           </select>
-        ) : (
-          <div className="FilterSelector-pageLoading">Loading...</div>
-        )} */}
-      </>
+        </div>
+      </div>
     );
   }
 }

@@ -22,14 +22,17 @@ class Navbar extends Component {
     return (
       <nav className="Navbar-container u-flex-between">
         <Link to="/" className="Navbar-link Navbar-home">
-          Thought For Food
+          <div className="Navbar-logo" />
         </Link>
         {this.props.userId && (
           <div className="Navbar-linkContainer">
             <GoogleLogout
               clientId={GOOGLE_CLIENT_ID}
               render={(renderProps) => (
-                <button className="Navbar-link Navbar-logout u-pointer" onClick={renderProps.onClick}>
+                <button
+                  className="Navbar-link Navbar-logout u-pointer"
+                  onClick={renderProps.onClick}
+                >
                   Logout
                 </button>
               )}

@@ -24,7 +24,6 @@ class Login extends Component {
   render() {
     return (
       <div className="Login-background">
-        <Navbar userId={this.props.userId} handleLogout={this.props.handleLogout} />
         <LoginCard handleLogin={this.props.handleLogin} />
       </div>
     );
