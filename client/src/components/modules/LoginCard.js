@@ -21,7 +21,7 @@ class LoginCard extends Component {
     return (
       <div className="LoginCard-background u-textCenter">
         <div className="LoginCard-title">Thought for Food</div>
-        <div className="LoginCard-subtitle">Rate the food served at your dining halls.</div>
+        <div className="LoginCard-subtitle">Dining made transparent! </div>
         <GoogleLogin
           clientId={GOOGLE_CLIENT_ID}
           render={(renderProps) => (
