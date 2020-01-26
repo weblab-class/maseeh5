@@ -75,7 +75,7 @@ router.get("/foods", (req, res) => {
     .populate("venue")
     .then((foods) =>
       Promise.all(foods.map(appendFoodRating)).then((foods) => {
-        if (req.query.min_rating) {
+        if (req.query.min_rating > 0) {
           foods = foods.filter((food) => food.rating >= req.query.min_rating);
         }
         if (req.query.sort_by === "rating") {
