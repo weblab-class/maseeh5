@@ -20,7 +20,7 @@ class Feed extends Component {
     this.state = {
       filterRating: 0,
       search: "",
-      orderBy: "",
+      orderBy: "name",
     };
   }
 
@@ -28,14 +28,33 @@ class Feed extends Component {
     document.title = "Feed Page";
   }
 
+  updateRating = (value) => {
+    this.setState({ filterRating: value });
+  };
+
+  updateSearch = (value) => {
+    this.setState({ search: value });
+  };
+
+  updateOrderBy = (value) => {
+    this.setState({ orderBy: value });
+  };
+
   render() {
     return (
       <>
         <Navbar userId={this.props.userId} handleLogout={this.props.handleLogout} />
         <div className="u-flex Feed-container">
-          <div>
+          <div className="Feed-filterContainer">
             <VenueSelector venueId={this.props.venueId} className="Feed-venueSelector" />
-            <FilterBox />
+            <FilterBox
+              rating={this.state.filterRating}
+              search={this.state.search}
+              orderBy={this.state.orderBy}
+              updateRating={this.updateRating}
+              updateSearch={this.updateSearch}
+              updateOrderBy={this.updateOrderBy}
+            />
           </div>
           <FoodList
             venueId={this.props.venueId}
