@@ -1,58 +1,49 @@
-.FilterSelector-card {
+.FilterBox-card {
   background-color: var(--lightgray);
   color: var(--secondary);
-  font-size: var(--l);
   border-radius: var(--s);
   padding: 5px 20px;
-  height: 200px;
-  width: 120px;
+  width: 200px;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
   font-family: var(--primaryFont);
   margin: 0 20px 10px 0;
 }
 
-.FilterSelector-pageLoading {
+.FilterBox-title {
+  font-size: var(--l);
+}
+
+.FilterBox-rating {
   font-size: var(--m);
-  color: var(--secondary);
+  margin: var(--s) 0;
 }
 
-.centerText {
-  text-align: center;
-}
-
-.FilterSelector-option {
+.FilterBox-search {
   font-size: var(--m);
-}
-
-.MakeMedium {
-  font-size: var(--m);
-}
-
-.FilterBar {
   background-color: var(--white);
   color: var(--medgray);
-  font-size: var(--m);
   border-radius: var(--s);
   padding: 5px 5px;
   height: 20px;
   width: 105px;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
   font-family: var(--primaryFont);
-  margin: 0 20px 10px 0;
-  display: inline-block;
+  margin: var(--s) 0;
 }
 
-.Orderby-DropDown {
+.FilterBox-orderBy {
+  margin: var(--s) 0;
+}
+
+.FilterBox-dropdown {
+  font-size: var(--m);
   background-color: var(--medgray);
   color: var(--lightgray);
-  font-size: var(--m);
   border-radius: var(--s);
   padding: 5px 20px;
   height: 30px;
   width: 120px;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
   font-family: var(--primaryFont);
-  margin: 0 20px 10px 0;
   display: inline-block;
-  font-size: var(--m);
 }
