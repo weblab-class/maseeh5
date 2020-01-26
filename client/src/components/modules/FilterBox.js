@@ -51,21 +51,6 @@ class FilterBox extends Component {
             <option>Name</option>
           </select>
         </div>
-        {/* {this.state.ratings ? (
-          <select
-            className="FilterSelector-card"
-            value={this.props.venueId}
-            onChange={this.handleSelect}
-          >
-            {this.state.venues.map((venueObj) => (
-              <option className="FilterSelector-option" key={venueObj._id} value={venueObj._id}>
-                {venueObj.name}
-              </option>
-            ))}
-          </select>
-        ) : (
-          <div className="FilterSelector-pageLoading">Loading...</div>
-        )} */}
       </>
     );
   }
