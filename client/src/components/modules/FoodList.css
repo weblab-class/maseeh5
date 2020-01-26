@@ -2,3 +2,8 @@
   padding: 0 10px;
   width: 75%;
 }
+
+.FoodList-pageLoading {
+  font-size: var(--m);
+  color: var(--secondary);
+}
