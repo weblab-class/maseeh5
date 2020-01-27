@@ -27,9 +27,14 @@ const express = require("express"); // backend framework for our node server.
 const session = require("express-session"); // library that stores info about each connected user
 const mongoose = require("mongoose"); // library to connect to MongoDB
 const path = require("path"); // provide utilities for working with file and directory paths
+const request = require("request-promise-native"); // provide fetch functionality to the server for web-scraping
+const cheerio = require("cheerio"); // provide DOM parsing functionality to the server for web-scraping
+const fs = require("fs");
 
 const api = require("./api");
 const auth = require("./auth");
+const Venue = require("./models/venue");
+const FoodItem = require("./models/foodItem");
 
 // socket stuff
 const socket = require("./server-socket");
@@ -104,3 +109,28 @@ socket.init(server);
 server.listen(port, () => {
   console.log(`Server running on port: ${port}`);
 });
+
+const scrapeBonAppetit = async () => {
+  const BASE_URL = "https://mit.cafebonappetit.com";
+  const venues = await Venue.find({});
+  for (venue of venues.slice(0, 1)) {
+    const foods = await FoodItem.find({ venue: venue._id });
+    const options = {
+      uri: `${BASE_URL}/cafe/${venue.internal_name}/`,
+      transform: (body) => cheerio.load(body),
+    };
+    const $ = await request(options);
+    const section = $("section#dinner");
+    const active = $("div.c-tab__content--active", section);
+    const items = $("button.site-panel__daypart-item-title", active);
+    items.each((index, item) => {
+      console.log(
+        $(item)
+          .text()
+          .trim()
+      );
+    });
+  }
+};
+
+scrapeBonAppetit();
