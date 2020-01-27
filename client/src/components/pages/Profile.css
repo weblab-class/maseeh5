@@ -15,7 +15,7 @@
   /* make it a circle */
   border-radius: 50%;
 
-  /* Centering on image`s center*/
+  /* Centering on image's center*/
   background-position-y: center;
   background-position-x: center;
   background-repeat: no-repeat;
@@ -64,7 +64,7 @@
   /* div height to be the same as width*/
   padding: 0;
 
-  /* Centering on image`s center*/
+  /* Centering on image's center*/
   background-position-y: center;
   background-position-x: center;
   background-repeat: no-repeat;

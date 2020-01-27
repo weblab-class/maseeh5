@@ -23,7 +23,7 @@ class Profile extends Component {
 
   componentDidMount() {
     document.title = "Profile Page";
-    get(`/api/user`, { user_id: this.props.profileId }).then((user) =>
+    get("/api/user", { user_id: this.props.profileId }).then((user) =>
       this.setState({ user: user })
     );
   }

@@ -16,7 +16,7 @@ class VenueList extends Component {
   }
 
   componentDidMount() {
-    get(`/api/venues`).then((venues) => {
+    get("/api/venues").then((venues) => {
       this.setState({ venues: venues });
     });
   }
