@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { get } from "../../utilities";
 import Navbar from "../modules/Navbar";
 import UserReviewList from "../modules/UserReviewList";
+import ProfileFilterBox from "../modules/ProfileFilterBox";
 
 import "./Profile.css";
 
@@ -18,6 +19,9 @@ class Profile extends Component {
     super(props);
     this.state = {
       user: undefined,
+      filterRating: 0,
+      search: "",
+      orderBy: "date",
     };
   }
 
@@ -28,6 +32,18 @@ class Profile extends Component {
     );
   }
 
+  updateRating = (value) => {
+    this.setState({ filterRating: value });
+  };
+
+  updateSearch = (value) => {
+    this.setState({ search: value });
+  };
+
+  updateOrderBy = (value) => {
+    this.setState({ orderBy: value });
+  };
+
   render() {
     if (!this.state.user) {
       return <div>Loading...</div>;
@@ -35,21 +51,38 @@ class Profile extends Component {
     return (
       <>
         <Navbar userId={this.props.userId} handleLogout={this.props.handleLogout} />
-        <h1 className="Profile-name u-textCenter">{this.state.user.name}</h1>
-        <div className="Profile-avatarContainer">
-          <div
-            className="Profile-avatar"
-            style={{
-              backgroundImage: `url(${this.state.user.pictureurl})`,
-            }}
-          />
-        </div>
-        <hr className="Profile-line" />
-        <div className="u-flex-justifyCenter Profile-reviews">
-          <div className="Profile-subContainer u-textCenter">
-            <h4 className="Profile-subTitle">Reviews</h4>
+        <div className="u-flex">
+          <div className="Profile-leftColumn">
+            <h1 className="Profile-name u-textCenter">{this.state.user.name}</h1>
+            <div className="Profile-avatarContainer">
+              <div
+                className="Profile-avatar"
+                style={{
+                  backgroundImage: `url(${this.state.user.pictureurl})`,
+                }}
+              />
+            </div>
+            <ProfileFilterBox
+              rating={this.state.filterRating}
+              search={this.state.search}
+              orderBy={this.state.orderBy}
+              updateRating={this.updateRating}
+              updateSearch={this.updateSearch}
+              updateOrderBy={this.updateOrderBy}
+            />
           </div>
-          <UserReviewList user={this.props.profileId} />
+          {/* <hr className="Profile-line" /> */}
+          <div className="u-flex-justifyCenter Profile-reviews">
+            <div className="Profile-subContainer u-textCenter">
+              <h4 className="Profile-subTitle">Reviews</h4>
+            </div>
+            <UserReviewList
+              user={this.props.profileId}
+              filterRating={this.state.filterRating}
+              search={this.state.search}
+              orderBy={this.state.orderBy}
+            />
+          </div>
         </div>
       </>
     );
