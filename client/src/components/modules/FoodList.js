@@ -27,9 +27,7 @@ class FoodList extends Component {
       search: this.props.search,
       min_rating: this.props.filterRating,
       sort_by: this.props.orderBy,
-    }).then((foodObjs) => {
-      this.setState({ foodItems: foodObjs });
-    });
+    }).then((foodObjs) => this.setState({ foodItems: foodObjs }));
   };
 
   componentDidMount() {
@@ -38,6 +36,7 @@ class FoodList extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (
+      this.props.venueId !== prevProps.venueId ||
       this.props.search !== prevProps.search ||
       this.props.filterRating !== prevProps.filterRating ||
       this.props.orderBy !== prevProps.orderBy
@@ -57,7 +56,6 @@ class FoodList extends Component {
               <FoodItem
                 key={foodObj._id}
                 venue={foodObj.venue}
-                foodRating={foodObj.rating}
                 name={foodObj.name}
                 foodId={foodObj._id}
               />

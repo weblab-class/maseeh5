@@ -1,6 +1,6 @@
 # Thought For Food
 
-Rate the food served at your dining halls.
+Dining made transparent!
 
 ## Credits
 
