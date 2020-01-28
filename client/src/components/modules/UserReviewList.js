@@ -26,7 +26,7 @@ class UserReviewList extends Component {
 
     socket.on("review", (newReview) => {
       if (newReview.user._id === this.props.user._id) {
-        this.setState({ reviews: this.state.reviews.unshift(newReview) });
+        this.setState({ reviews: [newReview].concat(this.state.reviews) });
       }
     });
   }

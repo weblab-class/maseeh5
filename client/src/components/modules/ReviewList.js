@@ -25,7 +25,7 @@ class ReviewList extends Component {
 
     socket.on("review", (newReview) => {
       if (newReview.food._id === this.props.foodId) {
-        this.setState({ reviews: this.state.reviews.unshift(newReview) });
+        this.setState({ reviews: [newReview].concat(this.state.reviews) });
       }
     });
   }
