@@ -32,7 +32,7 @@ class ProfileFilterBox extends Component {
       <div className="ProfileFilterBox-card u-textCenter">
         <div className="ProfileFilterBox-title">Filter</div>
         <div className="ProfileFilterBox-rating">
-          Minimum Rating:&emsp;
+          <div>Minimum Rating:</div>
           <Rating updateRating={this.props.updateRating} rating={this.props.rating} />
         </div>
         <input
@@ -43,7 +43,7 @@ class ProfileFilterBox extends Component {
           onChange={this.handleSearch}
         />
         <div className="ProfileFilterBox-orderBy">
-          Order By:&emsp;
+          <div className="ProfileFilterBox-orderBy">Order By:</div>
           <select
             className="ProfileFilterBox-dropdown"
             value={this.props.orderBy}
