@@ -29,15 +29,23 @@ class UserReviewList extends Component {
   };
 
   componentDidMount() {
-    get("/api/reviews", { creator_id: this.props.user }).then((reviews) =>
-      this.setState({ reviews: reviews })
-    );
+    this.fetchReviews();
 
     socket.on("review", (newReview) => {
       if (newReview.creator._id === this.props.user) {
         this.setState({ reviews: [newReview].concat(this.state.reviews) });
       }
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      this.props.search !== prevProps.search ||
+      this.props.filterRating !== prevProps.filterRating ||
+      this.props.orderBy !== prevProps.orderBy
+    ) {
+      this.fetchReviews();
+    }
   }
 
   render() {
