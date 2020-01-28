@@ -4,7 +4,7 @@ import Rating from "./Rating";
 import "./UserReview.css";
 
 /**
- * The Profile Page shows users their past reviews as well as their profile pic.
+ * UserReview is a component for displaying a single review.
  *
  * Proptypes
  * @param {string} venue
