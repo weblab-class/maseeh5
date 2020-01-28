@@ -73,14 +73,6 @@ class Profile extends Component {
           <div className="Profile-subContainer u-textCenter">
             <h4 className="Profile-subTitle">Reviews</h4>
           </div>
-          <ProfileFilterBox
-            rating={this.state.filterRating}
-            search={this.state.search}
-            orderBy={this.state.orderBy}
-            updateRating={this.updateRating}
-            updateSearch={this.updateSearch}
-            updateOrderBy={this.updateOrderBy}
-          />
           <UserReviewList
             user={this.props.profileId}
             filterRating={this.state.filterRating}
