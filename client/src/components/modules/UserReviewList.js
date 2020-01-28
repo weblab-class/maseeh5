@@ -6,7 +6,7 @@ import UserReview from "./UserReview";
 /**
  * UserReviewList is a component for displaying all of the reviews for a user.
  *
- * @param {Object} user
+ * @param {Number} user
  * @param {Number} filterRating
  * @param {String} search
  * @param {String} orderBy
@@ -25,7 +25,7 @@ class UserReviewList extends Component {
     );
 
     socket.on("review", (newReview) => {
-      if (newReview.user._id === this.props.user._id) {
+      if (newReview.creator._id === this.props.user) {
         this.setState({ reviews: [newReview].concat(this.state.reviews) });
       }
     });
