@@ -11,9 +11,9 @@
 
 .LoginCard-background {
   background: rgba(161, 161, 161, 0.8);
-  margin: 10% 25%;
+  margin: 10% 32%;
   border-radius: var(--s);
-  padding: 5%;
+  padding: 1% 1%;
 }
 
 .LoginCard-loginButton {
