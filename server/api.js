@@ -100,6 +100,12 @@ router.post("/food", auth.ensureLoggedIn, (req, res) => {
   );
 });
 
+router.get("/food_rating", (req, res) => {
+  FoodItem.findById(req.query.id)
+    .then((food) => appendFoodRating(food))
+    .then((food) => res.send({ rating: food.rating }));
+});
+
 router.get("/reviews", (req, res) => {
   const query = {};
   if (req.query.creator_id) {
@@ -126,7 +132,10 @@ router.post("/review", auth.ensureLoggedIn, (req, res) => {
     Review.findById(review._id)
       .populate("creator")
       .populate({ path: "food", populate: { path: "venue" } })
-      .then((review) => res.send(review))
+      .then((review) => {
+        socket.getIo().emit("review", review);
+        res.send(review);
+      })
   );
 });
 
