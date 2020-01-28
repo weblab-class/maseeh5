@@ -17,7 +17,7 @@
 }
 
 .LoginCard-loginButton {
-  padding: var(--s) var(--l);
+  padding: var(--s) var(--xl);
   border-color: var(--accent);
   border-width: 2px;
   background-color: transparent;
@@ -26,9 +26,25 @@
   border-style: solid;
   box-shadow: inset 0px 0px 0px #ffd166;
   transition: all 0.5s !important;
+  font-size: var(--m);
 }
 
 .LoginCard-loginButton:hover {
-  color: var(--secondary);
+  color: var(--medgray);
   box-shadow: inset 0px 80px 0px #ffd166;
+}
+
+.LoginCard-logo {
+  height: 105px;
+  width: 280px;
+
+  margin: auto;
+
+  /* Centering on image`s center*/
+  background-position-y: center;
+  background-position-x: center;
+
+  background-image: url("../../public/logo.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
