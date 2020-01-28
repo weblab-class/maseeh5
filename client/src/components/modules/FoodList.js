@@ -36,6 +36,7 @@ class FoodList extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (
+      this.props.venueId !== prevProps.venueId ||
       this.props.search !== prevProps.search ||
       this.props.filterRating !== prevProps.filterRating ||
       this.props.orderBy !== prevProps.orderBy

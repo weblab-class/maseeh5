@@ -25,11 +25,21 @@ class Profile extends Component {
     };
   }
 
-  componentDidMount() {
-    document.title = "Profile Page";
+  fetchUser = () => {
     get(`/api/user`, { user_id: this.props.profileId }).then((user) =>
       this.setState({ user: user })
     );
+  };
+
+  componentDidMount() {
+    document.title = "Profile Page";
+    this.fetchUser();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.profileId !== prevProps.profileId) {
+      this.fetchUser();
+    }
   }
 
   updateRating = (value) => {
