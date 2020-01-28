@@ -21,7 +21,7 @@ class Profile extends Component {
       user: undefined,
       filterRating: 0,
       search: "",
-      orderBy: "name",
+      orderBy: "date",
     };
   }
 
@@ -56,7 +56,7 @@ class Profile extends Component {
           <div
             className="Profile-avatar"
             style={{
-              backgroundImage: `url(${this.state.user.pictureurl}), url("../../public/corgi.jpg")`,
+              backgroundImage: `url(${this.state.user.pictureurl})`,
             }}
           />
         </div>
@@ -71,9 +71,22 @@ class Profile extends Component {
         {/* <hr className="Profile-line" /> */}
         <div className="u-flex-justifyCenter Profile-reviews">
           <div className="Profile-subContainer u-textCenter">
-            <h4 className="Profile-subTitle u-underline">Reviews</h4>
+            <h4 className="Profile-subTitle">Reviews</h4>
           </div>
-          <UserReviewList user={this.props.profileId} />
+          <ProfileFilterBox
+            rating={this.state.filterRating}
+            search={this.state.search}
+            orderBy={this.state.orderBy}
+            updateRating={this.updateRating}
+            updateSearch={this.updateSearch}
+            updateOrderBy={this.updateOrderBy}
+          />
+          <UserReviewList
+            user={this.props.profileId}
+            filterRating={this.state.filterRating}
+            search={this.state.search}
+            orderBy={this.state.orderBy}
+          />
         </div>
       </>
     );
