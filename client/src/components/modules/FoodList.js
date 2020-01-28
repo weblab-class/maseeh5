@@ -55,7 +55,6 @@ class FoodList extends Component {
               <FoodItem
                 key={foodObj._id}
                 venue={foodObj.venue}
-                foodRating={foodObj.rating}
                 name={foodObj.name}
                 foodId={foodObj._id}
               />

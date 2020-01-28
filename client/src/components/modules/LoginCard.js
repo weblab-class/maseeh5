@@ -20,13 +20,13 @@ class LoginCard extends Component {
   render() {
     return (
       <div className="LoginCard-background u-textCenter">
-        <div className="LoginCard-title">Thought for Food</div>
+        <div className="LoginCard-logo" />
         <div className="LoginCard-subtitle">Dining made transparent! </div>
         <GoogleLogin
           clientId={GOOGLE_CLIENT_ID}
           render={(renderProps) => (
             <button className="LoginCard-loginButton u-pointer" onClick={renderProps.onClick}>
-              <span className="Skele-button-text">Login</span>
+              <span>Login</span>
             </button>
           )}
           onSuccess={this.props.handleLogin}

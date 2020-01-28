@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { get } from "../../utilities";
+import { socket } from "../../client-socket.js";
 import UserReview from "./UserReview";
 
 /**
- * UserReviewList is a component for displaying all of the UserReview cards.
+ * UserReviewList is a component for displaying all of the reviews for a user.
  *
- * Proptypes
- * @param {String} user
+ * @param {Number} user
  * @param {Number} filterRating
  * @param {String} search
  * @param {String} orderBy
@@ -29,17 +29,15 @@ class UserReviewList extends Component {
   };
 
   componentDidMount() {
-    this.fetchReviews();
-  }
+    get("/api/reviews", { creator_id: this.props.user }).then((reviews) =>
+      this.setState({ reviews: reviews })
+    );
 
-  componentDidUpdate(prevProps, prevState) {
-    if (
-      this.props.search !== prevProps.search ||
-      this.props.filterRating !== prevProps.filterRating ||
-      this.props.orderBy !== prevProps.orderBy
-    ) {
-      this.fetchReviews();
-    }
+    socket.on("review", (newReview) => {
+      if (newReview.creator._id === this.props.user) {
+        this.setState({ reviews: [newReview].concat(this.state.reviews) });
+      }
+    });
   }
 
   render() {

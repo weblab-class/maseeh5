@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { get } from "../../utilities";
+import { socket } from "../../client-socket.js";
 import ReviewList from "./ReviewList";
 import NewReview from "./NewReview";
 import Rating from "./Rating";
@@ -11,7 +12,6 @@ import "./FoodItem.css";
  *
  * Proptypes
  * @param {VenueObj} venue
- * @param {number} foodRating
  * @param {String} name
  * @param {String} foodId
  */
@@ -19,15 +19,25 @@ class FoodItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      foodRating: undefined,
       expanded: false,
       addingReview: false,
-      reviews: undefined,
     };
   }
 
+  updateRating = () => {
+    get("/api/food_rating", { id: this.props.foodId }).then((result) => {
+      this.setState({ foodRating: result.rating });
+    });
+  };
+
   componentDidMount() {
-    get("/api/reviews", { food_id: this.props.foodId }).then((data) => {
-      this.setState({ reviews: data });
+    this.updateRating();
+
+    socket.on("review", (newReview) => {
+      if (newReview.food._id === this.props.foodId) {
+        this.updateRating();
+      }
     });
   }
 
@@ -41,31 +51,18 @@ class FoodItem extends Component {
     this.setState({ addingReview: !this.state.addingReview });
   };
 
-  newReviewSubmit = (newReview) => {
-    this.setState({ reviews: this.state.reviews.concat(newReview) });
-    this.setState({ addingReview: false });
-  };
-
-  newReviewCancel = (newReview) => {
-    this.setState({ addingReview: false });
-  };
-
   render() {
     return (
       <div className="FoodItem-largeContainer">
         <div className="FoodItem-container u-pointer u-flex-between" onClick={this.toggleExpanded}>
-          <Rating rating={this.props.foodRating} />
+          <Rating rating={this.state.foodRating} />
           <div className="u-bold u-flex-justifyCenter">{this.props.name}</div>
           <div className="FoodItem-empty" />
         </div>
 
         {/* displays review list when expanded */}
         {this.state.expanded && (
-          <ReviewList
-            className="FoodItem-reviewList"
-            foodId={this.props.foodId}
-            reviews={this.state.reviews}
-          />
+          <ReviewList className="FoodItem-reviewList" foodId={this.props.foodId} />
         )}
 
         {/* displays add review link when not adding review */}
@@ -81,8 +78,8 @@ class FoodItem extends Component {
             <NewReview
               venue={this.props.venue}
               foodId={this.props.foodId}
-              onSubmit={this.newReviewSubmit}
-              onCancel={this.newReviewCancel}
+              onSubmit={this.toggleAdd}
+              onCancel={this.toggleAdd}
             />
           </div>
         )}
