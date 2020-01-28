@@ -19,6 +19,15 @@ class UserReviewList extends Component {
     };
   }
 
+  fetchReviews = () => {
+    get("/api/reviews", {
+      creator_id: this.props.user,
+      search: this.props.search,
+      min_rating: this.props.filterRating,
+      sort_by: this.props.orderBy,
+    }).then((reviews) => this.setState({ reviews: reviews }));
+  };
+
   componentDidMount() {
     get("/api/reviews", { creator_id: this.props.user }).then((reviews) =>
       this.setState({ reviews: reviews })
