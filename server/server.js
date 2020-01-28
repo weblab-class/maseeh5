@@ -33,6 +33,7 @@ const fs = require("fs");
 
 const api = require("./api");
 const auth = require("./auth");
+const Meal = require("./models/meal");
 const Venue = require("./models/venue");
 const FoodItem = require("./models/foodItem");
 
@@ -110,17 +111,22 @@ server.listen(port, () => {
   console.log(`Server running on port: ${port}`);
 });
 
-const scrapeBonAppetit = async () => {
+const scrapeMeal = async () => {
+  return "dinner";
+};
+
+const scrapeMenu = async (meal) => {
   const BASE_URL = "https://mit.cafebonappetit.com";
   const venues = await Venue.find({});
   for (venue of venues.slice(0, 1)) {
+    console.log(venue);
     const foods = await FoodItem.find({ venue: venue._id });
     const options = {
       uri: `${BASE_URL}/cafe/${venue.internal_name}/`,
       transform: (body) => cheerio.load(body),
     };
     const $ = await request(options);
-    const section = $("section#dinner");
+    const section = $(`section#${meal}`);
     const active = $("div.c-tab__content--active", section);
     const items = $("button.site-panel__daypart-item-title", active);
     items.each((index, item) => {
@@ -133,4 +139,4 @@ const scrapeBonAppetit = async () => {
   }
 };
 
-scrapeBonAppetit();
+scrapeMeal().then((meal) => scrapeMenu(meal));

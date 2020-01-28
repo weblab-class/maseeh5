@@ -11,6 +11,7 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
+const Meal = require("./models/meal");
 const Venue = require("./models/venue");
 const FoodItem = require("./models/foodItem");
 const Review = require("./models/review");
@@ -47,6 +48,19 @@ router.get("/user", (req, res) => {
   });
 });
 
+router.get("/meals", (req, res) => {
+  Meal.find({}).then((meals) => res.send(meals));
+});
+
+router.post("/meal", auth.ensureLoggedIn, (req, res) => {
+  const newMeal = new Meal({
+    name: req.body.name,
+    internal_name: req.body.internal_name,
+  });
+
+  newMeal.save().then((meal) => res.send(meal));
+});
+
 router.get("/venues", (req, res) => {
   Venue.find({}).then((venues) =>
     Promise.all(venues.map(appendVenueRating)).then((venues) => res.send(venues))
@@ -56,6 +70,7 @@ router.get("/venues", (req, res) => {
 router.post("/venue", auth.ensureLoggedIn, (req, res) => {
   const newVenue = new Venue({
     name: req.body.name,
+    internal_name: req.body.internal_name,
   });
 
   newVenue
