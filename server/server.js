@@ -115,11 +115,12 @@ const BASE_URL = "https://mit.cafebonappetit.com";
 
 const scrapeMeal = async () => {
   // TODO: extract current meal from cafebonappetit website.
-  const currentMeal = "dinner";
-  const oldMeal = await Meal.find({ active: true });
+  const currentMeal = "lunch";
+
+  const oldMeal = await Meal.findOne({ active: true });
   oldMeal.active = false;
   await oldMeal.save();
-  const newMeal = await Meal.find({ name: currentMeal });
+  const newMeal = await Meal.findOne({ internal_name: currentMeal });
   newMeal.active = true;
   await newMeal.save();
 
