@@ -113,7 +113,10 @@ server.listen(port, () => {
 
 const BASE_URL = "https://mit.cafebonappetit.com";
 
-const scrapeMeal = async () => {};
+const scrapeMeal = async () => {
+  const now = new Date();
+  console.log(`updated meal at ${now.toLocaleTimeString()}`);
+};
 
 const scrapeMenu = async () => {
   const meal = (await Meal.findOne({ active: true })).internal_name;
@@ -125,7 +128,7 @@ const scrapeMenu = async () => {
       await food.save();
     }
     const options = {
-      uri: `${BASE_URL}/cafe/${venue.internal_name}/`,
+      uri: `${BASE_URL}/cafe/${venue.internal_name}/2020-02-03/`,
       transform: (body) => cheerio.load(body),
     };
     const $ = await request(options);
@@ -145,9 +148,9 @@ const scrapeMenu = async () => {
         newFood.save();
       }
     }
-    const now = new Date();
-    console.log(`updated menu at ${now.toLocaleTimeString()}`);
   }
+  const now = new Date();
+  console.log(`updated menu at ${now.toLocaleTimeString()}`);
 };
 
 setInterval(async () => {
