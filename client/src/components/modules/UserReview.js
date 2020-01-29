@@ -8,7 +8,7 @@ import "./UserReview.css";
  * UserReview is a component for displaying a single review.
  *
  * Proptypes
- * @param {obj} venue
+ * @param {Object} venue
  * @param {string} foodItem
  * @param {Date} date
  * @param {string} content

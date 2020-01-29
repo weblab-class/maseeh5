@@ -17,11 +17,20 @@
   margin: var(--m) 0;
 }
 
-.VenueCard-button {
+.VenueCard-buttonActive {
   font-size: var(--m);
   padding: var(--s) var(--l);
   border: 0;
   background-color: var(--secondary);
+  color: var(--white);
+  margin: 10px 20px;
+}
+
+.VenueCard-buttonInactive {
+  font-size: var(--m);
+  padding: var(--s) var(--l);
+  border: 0;
+  background-color: var(--medgray);
   color: var(--white);
   margin: 10px 20px;
 }
@@ -36,7 +45,10 @@
   .VenueCard-ratingBox {
     font-size: 2rem;
   }
-  .VenueCard-button {
+  .VenueCard-buttonActive {
+    font-size: 2rem;
+  }
+  .VenueCard-buttonInactive {
     font-size: 2rem;
   }
 }
