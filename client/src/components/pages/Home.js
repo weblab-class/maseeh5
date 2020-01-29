@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { get } from "../../utilities";
 import Navbar from "../modules/Navbar";
 import VenueList from "../modules/VenueList";
 
@@ -15,12 +16,13 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      meal: "Lunch",
+      meal: "",
     };
   }
 
   componentDidMount() {
     document.title = "Home Page";
+    get("/api/meal_active").then((meal) => this.setState({ meal: meal.name }));
   }
 
   render() {

@@ -42,7 +42,7 @@ class App extends Component {
   };
 
   handleLogout = () => {
-    console.log(`Logged out`);
+    console.log("Logged out");
     this.setState({ userId: undefined });
     post("/api/logout");
     navigate("/");
@@ -62,11 +62,7 @@ class App extends Component {
               userId={this.state.userId}
             />
           )}
-          <Feed
-            path="/feed/:venueId"
-            userId={this.state.userId}
-            handleLogout={this.handleLogout}
-          />
+          <Feed path="/feed/:venueId" userId={this.state.userId} handleLogout={this.handleLogout} />
           <Profile
             path="/profile/:profileId"
             userId={this.state.userId}
