@@ -52,7 +52,7 @@ class ProfileFilterBox extends Component {
             <option value="date">Date</option>
             <option value="rating">Rating</option>
             <option value="food">Food (A-Z)</option>
-            <option value="venue">Dining Hall</option>
+            <option value="venue">Dining Hall (A-Z)</option>
           </select>
         </div>
         <button className="FilterBox-reset u-pointer" onClick={this.props.reset}>
