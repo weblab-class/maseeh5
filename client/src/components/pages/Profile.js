@@ -81,7 +81,6 @@ class Profile extends Component {
               updateOrderBy={this.updateOrderBy}
             />
           </div>
-          {/* <hr className="Profile-line" /> */}
           <div className="u-flex-justifyCenter Profile-reviews">
             <div className="Profile-subContainer u-textCenter">
               <h4 className="Profile-subTitle">Reviews</h4>
