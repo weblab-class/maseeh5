@@ -51,7 +51,7 @@ class UserReviewList extends Component {
   render() {
     // reviews not yet loaded
     if (!this.state.reviews) {
-      return <div classname="UserReviewList-pageLoading">Loading...</div>;
+      return <div className="UserReviewList-pageLoading">Loading...</div>;
     }
     return (
       <div>
