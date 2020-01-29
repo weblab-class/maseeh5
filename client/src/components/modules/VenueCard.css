@@ -25,3 +25,18 @@
   color: var(--white);
   margin: 10px 20px;
 }
+
+@media (max-width: 1024px) {
+  .VenueCard-container {
+    width: 100%;
+  }
+  .VenueCard-title {
+    font-size: 3rem;
+  }
+  .VenueCard-ratingBox {
+    font-size: 2rem;
+  }
+  .VenueCard-button {
+    font-size: 2rem;
+  }
+}

@@ -40,11 +40,15 @@ class Feed extends Component {
     this.setState({ orderBy: value });
   };
 
+  reset = () => {
+    this.setState({ filterRating: 0, search: "", orderBy: "name" });
+  };
+
   render() {
     return (
       <>
         <Navbar userId={this.props.userId} handleLogout={this.props.handleLogout} />
-        <div className="u-flex Feed-container">
+        <div className="Feed-container">
           <div className="Feed-filterContainer">
             <VenueSelector venueId={this.props.venueId} className="Feed-venueSelector" />
             <FilterBox
@@ -54,6 +58,7 @@ class Feed extends Component {
               updateRating={this.updateRating}
               updateSearch={this.updateSearch}
               updateOrderBy={this.updateOrderBy}
+              reset={this.reset}
             />
           </div>
           <FoodList

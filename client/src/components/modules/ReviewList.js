@@ -33,7 +33,7 @@ class ReviewList extends Component {
   render() {
     // reviews not yet loaded
     if (!this.state.reviews) {
-      return <div>Loading...</div>;
+      return <div className="ReviewList-pageLoading">Loading...</div>;
     }
     // no reviews exist
     if (this.state.reviews.length === 0) {

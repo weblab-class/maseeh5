@@ -56,7 +56,7 @@ class FoodItem extends Component {
       <div className="FoodItem-largeContainer">
         <div className="FoodItem-container u-pointer u-flex-between" onClick={this.toggleExpanded}>
           <Rating rating={this.state.foodRating} />
-          <div className="u-bold u-flex-justifyCenter">{this.props.name}</div>
+          <div className="u-bold u-flex-justifyCenter FoodItem-name">{this.props.name}</div>
           <div className="FoodItem-empty" />
         </div>
 
@@ -68,7 +68,7 @@ class FoodItem extends Component {
         {/* displays add review link when not adding review */}
         {this.state.expanded && !this.state.addingReview && (
           <div className="FoodItem-addReview u-textCenter u-pointer" onClick={this.toggleAdd}>
-            Add Review
+            + Add Review
           </div>
         )}
 

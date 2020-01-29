@@ -33,7 +33,7 @@ class Review extends Component {
               {this.props.user.name}
             </Link>
             <div className="Review-date">
-              &ensp;({new Date(this.props.timestamp).toLocaleDateString(undefined, options)})
+              ({new Date(this.props.timestamp).toLocaleDateString(undefined, options)})
             </div>
           </div>
           <div className="u-flex">

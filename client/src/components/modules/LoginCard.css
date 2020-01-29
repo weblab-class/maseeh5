@@ -11,9 +11,9 @@
 
 .LoginCard-background {
   background: rgba(161, 161, 161, 0.8);
-  margin: 10% 25%;
+  margin: 10% 32%;
   border-radius: var(--s);
-  padding: 5%;
+  padding: 3% 1%;
 }
 
 .LoginCard-loginButton {
@@ -47,4 +47,16 @@
   background-image: url("../../public/logo.png");
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+@media (max-width: 1024px) {
+  .LoginCard-subtitle {
+    font-size: 2rem;
+  }
+  .LoginCard-loginButton {
+    font-size: 2rem;
+  }
+  .LoginCard-background {
+    margin: 50% 15%;
+  }
 }
