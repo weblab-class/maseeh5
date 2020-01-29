@@ -115,17 +115,22 @@ const BASE_URL = "https://mit.cafebonappetit.com";
 
 const scrapeMeal = async () => {
   // TODO: extract current meal from cafebonappetit website.
-  const currentMeal = "lunch";
+  const currentMeal = "dinner";
 
+  let result = false;
   const oldMeal = await Meal.findOne({ active: true });
-  oldMeal.active = false;
-  await oldMeal.save();
-  const newMeal = await Meal.findOne({ internal_name: currentMeal });
-  newMeal.active = true;
-  await newMeal.save();
+  if (oldMeal.internal_name !== currentMeal) {
+    oldMeal.active = false;
+    await oldMeal.save();
+    const newMeal = await Meal.findOne({ internal_name: currentMeal });
+    newMeal.active = true;
+    await newMeal.save();
+    result = true;
+  }
 
   const now = new Date();
   console.log(`updated meal at ${now.toLocaleTimeString()}`);
+  return result;
 };
 
 const scrapeMenu = async () => {
@@ -160,10 +165,12 @@ const scrapeMenu = async () => {
     }
   }
   const now = new Date();
-  console.log(`updated menu at ${now.toLocaleTimeString()}`);
+  console.log(`updated menu at ${now.toLocaleTimeString()} (${meal})`);
 };
 
 setInterval(async () => {
-  await scrapeMeal();
-  await scrapeMenu();
+  const changed = await scrapeMeal();
+  if (changed) {
+    await scrapeMenu();
+  }
 }, 1000 * 60); // Scrape the website every minute.

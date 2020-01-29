@@ -19,8 +19,22 @@ class VenueSelector extends Component {
   }
 
   componentDidMount() {
-    get("/api/venues").then((data) => {
-      this.setState({ venues: data });
+    get("/api/venues").then((venues) => {
+      Promise.all(
+        venues.map(async (venue) => {
+          const foods = await get("/api/foods", { venue_id: venue._id });
+          if (foods.length > 0) {
+            return venue;
+          } else if (venue._id == this.props.venueId) {
+            // don't allow access to closed venue
+            navigate(`/`);
+          }
+          return null;
+        })
+      ).then((venues) => {
+        venues = venues.filter((venue) => venue); // get rid of closed venues
+        this.setState({ venues: venues });
+      });
     });
   }
 
