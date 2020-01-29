@@ -6,6 +6,7 @@
   margin: 0 0 var(--s) 0;
   padding: var(--s);
   height: var(--l);
+  text-align: center;
 }
 
 .FoodItem-container:hover {
@@ -40,4 +41,16 @@
   font-family: var(--secondaryFont);
   color: var(--secondary);
   padding: var(--s);
+}
+
+@media (max-width: 1024px) {
+  .FoodItem-container {
+    height: 1%;
+  }
+  .FoodItem-name {
+    font-size: 2rem;
+  }
+  .FoodItem-addReview {
+    font-size: 2rem;
+  }
 }

@@ -3,3 +3,9 @@
   color: var(--secondary);
   padding: 0 0 var(--s) var(--s);
 }
+
+@media (max-width: 1024px) {
+  .ReviewList-empty {
+    font-size: 2rem;
+  }
+}

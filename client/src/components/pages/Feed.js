@@ -44,7 +44,7 @@ class Feed extends Component {
     return (
       <>
         <Navbar userId={this.props.userId} handleLogout={this.props.handleLogout} />
-        <div className="u-flex Feed-container">
+        <div className="Feed-container">
           <div className="Feed-filterContainer">
             <VenueSelector venueId={this.props.venueId} className="Feed-venueSelector" />
             <FilterBox

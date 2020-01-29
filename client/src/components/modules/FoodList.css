@@ -7,3 +7,10 @@
   font-size: var(--m);
   color: var(--secondary);
 }
+
+@media (max-width: 1024px) {
+  .FoodList-cards {
+    width: 100%;
+    padding: 0;
+  }
+}
