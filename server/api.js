@@ -79,7 +79,15 @@ router.get("/foods", (req, res) => {
           foods = foods.filter((food) => food.rating >= req.query.min_rating);
         }
         if (req.query.sort_by === "rating") {
-          foods.sort((food1, food2) => food2.rating - food1.rating);
+          foods.sort((food1, food2) =>
+            food2.rating && food1.rating
+              ? food2.rating - food1.rating
+              : food2.rating
+              ? 1
+              : food1.rating
+              ? -1
+              : 0
+          );
         }
         res.send(foods);
       })

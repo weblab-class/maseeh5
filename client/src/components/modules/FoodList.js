@@ -46,6 +46,7 @@ class FoodList extends Component {
   }
 
   render() {
+    // food items not yet loaded
     if (!this.state.foodItems) {
       return <div className="FoodList-pageLoading">Loading...</div>;
     }
