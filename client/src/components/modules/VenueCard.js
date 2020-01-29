@@ -20,7 +20,7 @@ class VenueCard extends Component {
       <div className="VenueCard-container u-textCenter">
         <div className="VenueCard-title u-bold">{this.props.venue.name}</div>
         <div className="VenueCard-ratingBox">
-          Average Rating: <Rating rating={this.props.venue.rating} />
+          Average Rating: <Rating rating={this.props.venue.rating} className="VenueCard-rating" />
         </div>
         <Link to={`/feed/${this.props.venue._id}`}>
           <button className="VenueCard-button u-pointer">See More</button>
