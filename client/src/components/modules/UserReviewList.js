@@ -40,6 +40,7 @@ class UserReviewList extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (
+      this.props.user !== prevProps.user ||
       this.props.search !== prevProps.search ||
       this.props.filterRating !== prevProps.filterRating ||
       this.props.orderBy !== prevProps.orderBy
