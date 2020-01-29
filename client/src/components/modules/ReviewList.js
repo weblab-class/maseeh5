@@ -37,7 +37,7 @@ class ReviewList extends Component {
     }
     // no reviews exist
     if (this.state.reviews.length === 0) {
-      return <div className="ReviewList-empty">No Reviews!</div>;
+      return <div className="ReviewList-empty">No reviews match your search!</div>;
     }
     return (
       <div>

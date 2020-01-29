@@ -50,7 +50,7 @@ class FilterBox extends Component {
             value={this.props.orderBy}
             onChange={this.handleSelect}
           >
-            <option value="name">Name</option>
+            <option value="name">Food (A-Z)</option>
             <option value="rating">Rating</option>
           </select>
         </div>

@@ -15,7 +15,7 @@ class UserReviewList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviews: [],
+      reviews: undefined,
     };
   }
 
@@ -49,6 +49,14 @@ class UserReviewList extends Component {
   }
 
   render() {
+    // reviews not yet loaded
+    if (!this.state.reviews) {
+      return <div>Loading...</div>;
+    }
+    // no reviews exist
+    if (this.state.reviews.length === 0) {
+      return <div className="UserReviewList-empty">No reviews match your search!</div>;
+    }
     return (
       <div>
         {this.state.reviews.map((review) => (
