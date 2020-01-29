@@ -51,24 +51,22 @@ class UserReviewList extends Component {
   render() {
     // reviews not yet loaded
     if (!this.state.reviews) {
-      return <div>Loading...</div>;
-    }
-    // no reviews exist
-    if (this.state.reviews.length === 0) {
-      return <div className="UserReviewList-empty">No reviews match your search!</div>;
+      return <div classname="UserReviewList-pageLoading">Loading...</div>;
     }
     return (
       <div>
-        {this.state.reviews.map((review) => (
-          <UserReview
-            key={review._id}
-            rating={review.rating}
-            venue={review.food.venue.name}
-            foodItem={review.food.name}
-            date={review.timestamp}
-            content={review.content}
-          />
-        ))}
+        {this.state.reviews.length
+          ? this.state.reviews.map((review) => (
+              <UserReview
+                key={review._id}
+                rating={review.rating}
+                venue={review.food.venue.name}
+                foodItem={review.food.name}
+                date={review.timestamp}
+                content={review.content}
+              />
+            ))
+          : "No reviews match your search!"}
       </div>
     );
   }

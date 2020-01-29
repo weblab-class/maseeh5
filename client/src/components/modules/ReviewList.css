@@ -1,5 +1,12 @@
+.UserReviewList-pageLoading {
+  font-family: var(--secondaryFont);
+  font-size: var(--m);
+  color: var(--secondary);
+}
+
 .ReviewList-empty {
   font-family: var(--secondaryFont);
+  font-size: var(--m);
   color: var(--secondary);
   padding: 0 0 var(--s) var(--s);
 }
