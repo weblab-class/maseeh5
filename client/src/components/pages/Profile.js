@@ -90,7 +90,6 @@ class Profile extends Component {
               reset={this.reset}
             />
           </div>
-          {/* <hr className="Profile-line" /> */}
           <div className="u-flex-justifyCenter Profile-reviews">
             <div className="Profile-subContainer u-textCenter">
               <h4 className="Profile-subTitle">Reviews</h4>

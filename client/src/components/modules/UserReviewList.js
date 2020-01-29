@@ -60,13 +60,13 @@ class UserReviewList extends Component {
               <UserReview
                 key={review._id}
                 rating={review.rating}
-                venue={review.food.venue.name}
+                venue={review.food.venue}
                 foodItem={review.food.name}
                 date={review.timestamp}
                 content={review.content}
               />
             ))
-          : "No reviews match your search!"}
+          : "If no results appear, please put a complete name of the food you want to search."}
       </div>
     );
   }
