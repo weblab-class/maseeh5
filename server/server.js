@@ -114,6 +114,15 @@ server.listen(port, () => {
 const BASE_URL = "https://mit.cafebonappetit.com";
 
 const scrapeMeal = async () => {
+  // TODO: extract current meal from cafebonappetit website.
+  const currentMeal = "dinner";
+  const oldMeal = await Meal.find({ active: true });
+  oldMeal.active = false;
+  await oldMeal.save();
+  const newMeal = await Meal.find({ name: currentMeal });
+  newMeal.active = true;
+  await newMeal.save();
+
   const now = new Date();
   console.log(`updated meal at ${now.toLocaleTimeString()}`);
 };

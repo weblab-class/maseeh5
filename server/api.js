@@ -209,6 +209,7 @@ appendFoodRating = async (food) => {
       _id: food._id,
       venue: food.venue,
       name: food.name,
+      active: food.active,
       rating: Math.round(await calculateAverageFoodRating(food._id)),
     };
   } catch (err) {
@@ -218,7 +219,7 @@ appendFoodRating = async (food) => {
 };
 
 calculateAverageVenueRating = async (venue) => {
-  const items = await FoodItem.find({ venue: venue });
+  const items = await FoodItem.find({ venue: venue, active: true });
   let sum = 0;
   let count = 0;
   for (item of items) {
