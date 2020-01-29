@@ -23,7 +23,7 @@ class Navbar extends Component {
   }
 
   componentDidMount() {
-    get(`/api/user`, { user_id: this.props.userId }).then((user) => this.setState({ user: user }));
+    get("/api/user", { user_id: this.props.userId }).then((user) => this.setState({ user: user }));
   }
 
   render() {
