@@ -122,9 +122,6 @@ router.get("/reviews", (req, res) => {
   if (req.query.food_id) {
     query.food = req.query.food_id;
   }
-  if (req.query.search) {
-    query.$text = { $search: req.query.search };
-  }
   const sort = !req.query.sort_by || req.query.sort_by === "date" ? { timestamp: -1 } : {};
   const foodOptions = req.query.sort_by === "food" ? { sort: { name: 1 } } : {};
   const foodQuery = req.query.search ? { $text: { $search: req.query.search } } : {};
@@ -142,6 +139,7 @@ router.get("/reviews", (req, res) => {
       },
     })
     .then((reviews) => {
+      reviews = reviews.filter((review) => review.food);
       if (req.query.min_rating > 0) {
         reviews = reviews.filter((review) => review.rating >= req.query.min_rating);
       }
