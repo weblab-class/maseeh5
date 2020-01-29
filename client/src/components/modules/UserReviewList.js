@@ -67,7 +67,7 @@ class UserReviewList extends Component {
                 content={review.content}
               />
             ))
-          : "If no results appear, please put a complete name of the food you want to search."}
+          : "Please enter a complete name of the food you want to search."}
       </div>
     );
   }

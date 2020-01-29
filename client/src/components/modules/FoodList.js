@@ -61,7 +61,7 @@ class FoodList extends Component {
                 foodId={foodObj._id}
               />
             ))
-          : "No items match your search."}
+          : "Please enter a complete name of the food you want to search."}
       </div>
     );
   }
