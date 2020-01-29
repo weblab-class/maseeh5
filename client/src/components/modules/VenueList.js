@@ -23,7 +23,7 @@ class VenueList extends Component {
 
   render() {
     return (
-      <div className="VenueList-container u-flex u-flex-justifyCenter">
+      <div className="VenueList-container u-flex-justifyCenter">
         {this.state.venues.map((venue) => (
           <VenueCard key={venue._id} venue={venue} />
         ))}
