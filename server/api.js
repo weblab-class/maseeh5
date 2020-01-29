@@ -61,6 +61,10 @@ router.post("/meal", auth.ensureLoggedIn, (req, res) => {
   newMeal.save().then((meal) => res.send(meal));
 });
 
+router.get("/meal_active", (req, res) => {
+  Meal.findOne({ active: true }).then((meal) => res.send(meal));
+});
+
 router.get("/venues", (req, res) => {
   Venue.find({}).then((venues) =>
     Promise.all(venues.map(appendVenueRating)).then((venues) => res.send(venues))
@@ -80,7 +84,7 @@ router.post("/venue", auth.ensureLoggedIn, (req, res) => {
 });
 
 router.get("/foods", (req, res) => {
-  const query = { venue: req.query.venue_id };
+  const query = { venue: req.query.venue_id, active: true };
   if (req.query.search) {
     query.$text = { $search: req.query.search };
   }

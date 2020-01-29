@@ -111,16 +111,19 @@ server.listen(port, () => {
   console.log(`Server running on port: ${port}`);
 });
 
-const scrapeMeal = async () => {
-  return "dinner";
-};
+const BASE_URL = "https://mit.cafebonappetit.com";
 
-const scrapeMenu = async (meal) => {
-  const BASE_URL = "https://mit.cafebonappetit.com";
+const scrapeMeal = async () => {};
+
+const scrapeMenu = async () => {
+  const meal = (await Meal.findOne({ active: true })).internal_name;
   const venues = await Venue.find({});
-  for (venue of venues.slice(0, 1)) {
-    console.log(venue);
+  for (venue of venues) {
     const foods = await FoodItem.find({ venue: venue._id });
+    for (food of foods) {
+      food.active = false;
+      await food.save();
+    }
     const options = {
       uri: `${BASE_URL}/cafe/${venue.internal_name}/`,
       transform: (body) => cheerio.load(body),
@@ -129,14 +132,25 @@ const scrapeMenu = async (meal) => {
     const section = $(`section#${meal}`);
     const active = $("div.c-tab__content--active", section);
     const items = $("button.site-panel__daypart-item-title", active);
-    items.each((index, item) => {
-      console.log(
-        $(item)
-          .text()
-          .trim()
-      );
-    });
+    for (item of Object.values(items).slice(0, -4)) {
+      name = $(item)
+        .text()
+        .trim();
+      const existingFood = await FoodItem.findOne({ venue: venue._id, name: name });
+      if (existingFood) {
+        existingFood.active = true;
+        existingFood.save();
+      } else {
+        const newFood = new FoodItem({ venue: venue._id, name: name });
+        newFood.save();
+      }
+    }
+    const now = new Date();
+    console.log(`updated menu at ${now.toLocaleTimeString()}`);
   }
 };
 
-scrapeMeal().then((meal) => scrapeMenu(meal));
+setInterval(async () => {
+  await scrapeMeal();
+  await scrapeMenu();
+}, 1000 * 60); // Scrape the website every minute.
