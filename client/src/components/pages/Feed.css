@@ -1,0 +1,25 @@
+.Feed-container {
+  margin: 30px;
+  width: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Feed-filterContainer {
+  width: 240px;
+  margin: 0 var(--l) var(--m) 0;
+}
+
+.Feed-foodList {
+  width: auto;
+}
+
+@media (max-width: 1024px) {
+  .Feed-filterContainer {
+    width: 100%;
+    margin: 0 0 var(--s) 0;
+  }
+  .Feed-foodList {
+    width: 100%;
+  }
+}

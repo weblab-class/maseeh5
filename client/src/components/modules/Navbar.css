@@ -13,12 +13,6 @@
   vertical-align: top;
 }
 
-.Navbar-link:visited {
-  color: var(--white);
-  opacity: 0.6;
-  text-decoration: none;
-}
-
 .Navbar-link:hover {
   opacity: 0.8;
 }
@@ -49,7 +43,20 @@
   background-position-y: center;
   background-position-x: center;
 
-  background-image: url("../../public/corgi.jpg");
+  background-size: cover;
+}
+
+.Navbar-logo {
+  height: 32px;
+  width: 90px;
+
+  margin-top: 2.5px;
+
+  /* Centering on image`s center*/
+  background-position-y: center;
+  background-position-x: center;
+
+  background-image: url("../../public/logo.png");
   background-repeat: no-repeat;
   background-size: cover;
 }

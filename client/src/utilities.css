@@ -29,21 +29,31 @@
   --s: 8px;
   --m: 16px;
   --l: 24px;
+  --xl: 32px;
 
   --primaryFont: "Roboto Mono", sans-serif;
   --secondaryFont: "Source Sans Pro", sans-serif;
 }
 
 body {
+  color: var(--secondary);
   margin: 0;
   padding: 0;
   font-family: "Roboto Mono", sans-serif;
   font-weight: 300;
+  background-color: var(--white);
 }
 
 button {
   font-family: "Source Sans Pro", sans-serif;
   border-radius: var(--s);
+}
+
+button:focus,
+textarea:focus,
+input:focus,
+select:focus {
+  outline: none;
 }
 
 form {
@@ -100,4 +110,14 @@ form {
 
 .u-link:hover {
   color: var(--primary--dim);
+}
+
+.u-underline {
+  text-decoration: underline;
+}
+
+@media (max-width: 1024px) {
+  body {
+    font-size: 2rem;
+  }
 }

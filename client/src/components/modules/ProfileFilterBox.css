@@ -1,0 +1,85 @@
+.ProfileFilterBox-card {
+  background-color: var(--lightgray);
+  color: var(--secondary);
+  border-radius: var(--s);
+  padding: 15px;
+  width: auto;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+  font-family: var(--primaryFont);
+  margin: auto;
+}
+
+.ProfileFilterBox-title {
+  font-size: var(--l);
+}
+
+.ProfileFilterBox-rating {
+  font-size: var(--m);
+  margin: var(--s) 0;
+}
+
+.ProfileFilterBox-search {
+  font-size: var(--m);
+  background-color: var(--white);
+  color: var(--medgray);
+  border: 0;
+  border-radius: var(--s);
+  padding: 5px;
+  height: 20px;
+  width: 175px;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+  font-family: var(--primaryFont);
+  margin: var(--s);
+}
+
+.ProfileFilterBox-dropdown {
+  font-size: var(--m);
+  background-color: var(--medgray);
+  color: var(--white);
+  border-radius: var(--s);
+  padding: 5px;
+  height: 35px;
+  width: 190px;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+  font-family: var(--primaryFont);
+  display: inline-block;
+}
+
+.ProfileFilterBox-orderBy {
+  margin: var(--s) 0;
+}
+
+.ProfileFilterBox-reset {
+  font-size: var(--m);
+  padding: var(--s) var(--l);
+  border: 0;
+  background-color: var(--secondary);
+  color: var(--white);
+  margin: 10px 20px;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 1024px) {
+  .ProfileFilterBox-card {
+    width: 100%;
+  }
+  .ProfileFilterBox-search {
+    font-size: 2rem;
+    height: auto;
+    width: auto;
+  }
+  .ProfileFilterBox-dropdown {
+    font-size: 2rem;
+    height: auto;
+    width: 300px;
+  }
+  .ProfileFilterBox-minReview {
+    font-size: 2rem;
+  }
+  .ProfileFilterBox-title {
+    font-size: 2.5rem;
+  }
+  .ProfileFilterBox-reset {
+    font-size: 2rem;
+  }
+}

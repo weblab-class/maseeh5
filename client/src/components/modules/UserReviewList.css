@@ -1,0 +1,11 @@
+.UserReviewList-pageLoading {
+  font-family: var(--secondaryFont);
+  font-size: var(--m);
+  color: var(--secondary);
+}
+
+@media (max-width: 1024px) {
+  .UserReviewList-noReviews {
+    font-size: 2rem;
+  }
+}

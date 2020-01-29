@@ -4,7 +4,6 @@ import { Link } from "@reach/router";
 import Rating from "./Rating";
 
 import "./VenueCard.css";
-import "../../utilities.css";
 
 /**
  * VenueCard is a component for displaying the information for a single venue.
@@ -23,8 +22,6 @@ class VenueCard extends Component {
       this.setState({ active: reviews.length > 0 });
     });
   }
-
-  componentDidMount() {}
 
   render() {
     return (

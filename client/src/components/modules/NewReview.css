@@ -1,0 +1,64 @@
+.NewReview-container {
+  background-color: var(--lightgray);
+  font-family: var(--secondaryFont);
+  font-size: var(--m);
+}
+
+textarea {
+  resize: none;
+  width: 100%;
+  font-family: var(--secondaryFont);
+  font-size: var(--m);
+  background-color: var(--white);
+  padding: var(--xs);
+  border-color: transparent;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.NewReview-textarea {
+  margin: var(--m) var(--s) 0 0;
+}
+
+.NewReview-flexRight {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.NewReview-cancel {
+  font-size: var(--m);
+  background-color: var(--lightgray);
+  color: var(--secondary);
+  border-width: 1px;
+  border-color: var(--secondary);
+  padding: var(--xs) var(--s);
+  margin: var(--xs) var(--s);
+  border-style: solid;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.NewReview-submit {
+  font-size: var(--m);
+  background-color: var(--secondary);
+  color: var(--white);
+  padding: var(--xs) var(--s);
+  border-width: 1px;
+  border-color: var(--secondary);
+  margin: var(--xs) 0;
+  border-style: solid;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 1024px) {
+  .NewReview-container {
+    font-size: 2rem;
+  }
+  textarea {
+    font-size: 2rem;
+  }
+  .NewReview-cancel {
+    font-size: 2rem;
+  }
+  .NewReview-submit {
+    font-size: 2rem;
+  }
+}

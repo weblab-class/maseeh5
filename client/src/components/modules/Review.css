@@ -1,0 +1,41 @@
+.Review-userLink {
+  color: var(--secondary);
+  font-family: var(--secondary);
+  font-size: var(--m);
+  text-decoration: none;
+  margin: 0 5px 0 0;
+}
+
+.Review-userLink:hover {
+  opacity: 0.8;
+}
+
+.Review-container {
+  color: var(--secondary);
+  font-family: var(--secondaryFont);
+  padding: var(--s);
+}
+
+.Review-content {
+  font-size: var(--m);
+}
+
+.Review-rating {
+  margin: 0 0 0 var(--s);
+}
+
+.Review-date {
+  font-style: italic;
+}
+
+@media (max-width: 1024px) {
+  .Review-content {
+    font-size: 2rem;
+  }
+  .Review-userLink {
+    font-size: 2rem;
+  }
+  .Review-container {
+    font-size: 2rem;
+  }
+}

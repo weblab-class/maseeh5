@@ -1,4 +1,11 @@
 .Rating-box {
-    font-size: var(--m);
-    color: var(--accent);
+  font-size: var(--m);
+  color: var(--accent);
+  display: inline-block;
+}
+
+@media (max-width: 1024px) {
+  .Rating-box {
+    font-size: 2rem;
+  }
 }

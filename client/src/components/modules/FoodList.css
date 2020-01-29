@@ -1,0 +1,16 @@
+.FoodList-cards {
+  padding: 0 10px;
+  width: 75%;
+}
+
+.FoodList-pageLoading {
+  font-size: var(--m);
+  color: var(--secondary);
+}
+
+@media (max-width: 1024px) {
+  .FoodList-cards {
+    width: 100%;
+    padding: 0;
+  }
+}

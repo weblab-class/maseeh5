@@ -48,7 +48,9 @@ router.get("/user", (req, res) => {
 });
 
 router.get("/venues", (req, res) => {
-  Venue.find({}).then((venues) => Promise.all(venues.map(appendVenueRating)).then(venues => res.send(venues)));
+  Venue.find({}).then((venues) =>
+    Promise.all(venues.map(appendVenueRating)).then((venues) => res.send(venues))
+  );
 });
 
 router.post("/venue", auth.ensureLoggedIn, (req, res) => {
@@ -56,11 +58,40 @@ router.post("/venue", auth.ensureLoggedIn, (req, res) => {
     name: req.body.name,
   });
 
-  newVenue.save().then(appendVenueRating).then((venue) => res.send(venue));
+  newVenue
+    .save()
+    .then(appendVenueRating)
+    .then((venue) => res.send(venue));
 });
 
 router.get("/foods", (req, res) => {
-  FoodItem.find({venue: req.query.venue_id}).populate('venue').then((foods) => Promise.all(foods.map(appendFoodRating)).then((foods) => res.send(foods)));
+  const query = { venue: req.query.venue_id };
+  if (req.query.search) {
+    query.$text = { $search: req.query.search };
+  }
+  const sort = req.query.sort_by === "name" ? { name: 1 } : {};
+  FoodItem.find(query)
+    .sort(sort)
+    .populate("venue")
+    .then((foods) =>
+      Promise.all(foods.map(appendFoodRating)).then((foods) => {
+        if (req.query.min_rating > 0) {
+          foods = foods.filter((food) => food.rating >= req.query.min_rating);
+        }
+        if (req.query.sort_by === "rating") {
+          foods.sort((food1, food2) =>
+            food2.rating && food1.rating
+              ? food2.rating - food1.rating
+              : food2.rating
+              ? 1
+              : food1.rating
+              ? -1
+              : 0
+          );
+        }
+        res.send(foods);
+      })
+    );
 });
 
 router.post("/food", auth.ensureLoggedIn, (req, res) => {
@@ -69,7 +100,18 @@ router.post("/food", auth.ensureLoggedIn, (req, res) => {
     name: req.body.name,
   });
 
-  newFood.save().then((food) => FoodItem.findById(food._id).populate('venue').then((food) => appendFoodRating(food)).then((food) => res.send(food)));
+  newFood.save().then((food) =>
+    FoodItem.findById(food._id)
+      .populate("venue")
+      .then((food) => appendFoodRating(food))
+      .then((food) => res.send(food))
+  );
+});
+
+router.get("/food_rating", (req, res) => {
+  FoodItem.findById(req.query.id)
+    .then((food) => appendFoodRating(food))
+    .then((food) => res.send({ rating: food.rating }));
 });
 
 router.get("/reviews", (req, res) => {
@@ -80,7 +122,32 @@ router.get("/reviews", (req, res) => {
   if (req.query.food_id) {
     query.food = req.query.food_id;
   }
-  Review.find(query).populate('creator').populate('food').populate('venue').then((reviews) => res.send(reviews));
+  const sort = !req.query.sort_by || req.query.sort_by === "date" ? { timestamp: -1 } : {};
+  const foodOptions = req.query.sort_by === "food" ? { sort: { name: 1 } } : {};
+  const foodQuery = req.query.search ? { $text: { $search: req.query.search } } : {};
+  const venueOptions = req.query.sort_by === "venue" ? { sort: { name: 1 } } : {};
+  Review.find(query)
+    .sort(sort)
+    .populate("creator")
+    .populate({
+      path: "food",
+      match: foodQuery,
+      options: foodOptions,
+      populate: {
+        path: "venue",
+        options: venueOptions,
+      },
+    })
+    .then((reviews) => {
+      reviews = reviews.filter((review) => review.food);
+      if (req.query.min_rating > 0) {
+        reviews = reviews.filter((review) => review.rating >= req.query.min_rating);
+      }
+      if (req.query.sort_by === "rating") {
+        reviews.sort((review1, review2) => review2.rating - review1.rating);
+      }
+      res.send(reviews);
+    });
 });
 
 router.post("/review", auth.ensureLoggedIn, (req, res) => {
@@ -91,62 +158,72 @@ router.post("/review", auth.ensureLoggedIn, (req, res) => {
     content: req.body.content,
   });
 
-  newReview.save().then((review) => Review.findById(review._id).populate('creator').populate('food').populate('venue').then((review) => res.send(review)));
+  newReview.save().then((review) =>
+    Review.findById(review._id)
+      .populate("creator")
+      .populate({ path: "food", populate: { path: "venue" } })
+      .then((review) => {
+        socket.getIo().emit("review", review);
+        res.send(review);
+      })
+  );
 });
 
 appendVenueRating = async (venue) => {
   try {
-    venue.rating = await calculateAverageVenueRating(venue._id);
-    console.log(venue.rating);
-    console.log(venue); // BUG: this is somehow broken
-    return venue;
+    return {
+      _id: venue._id,
+      name: venue.name,
+      rating: Math.round(await calculateAverageVenueRating(venue._id)),
+    };
   } catch (err) {
     console.log(err);
     return undefined;
   }
-}
+};
 
 appendFoodRating = async (food) => {
   try {
-    food.rating = await calculateAverageFoodRating(food._id);
-    console.log(food.rating);
-    console.log(food); // BUG: this is somehow broken
-    return food;
+    return {
+      _id: food._id,
+      venue: food.venue,
+      name: food.name,
+      rating: Math.round(await calculateAverageFoodRating(food._id)),
+    };
   } catch (err) {
     console.log(err);
     return undefined;
   }
-}
+};
 
 calculateAverageVenueRating = async (venue) => {
-  const items = await FoodItem.find({venue: venue})
-  if (items.length === 0) {
-    return undefined;
-  }
+  const items = await FoodItem.find({ venue: venue });
   let sum = 0;
   let count = 0;
   for (item of items) {
     const rating = await calculateAverageFoodRating(item._id);
     if (rating !== undefined) {
-      sum += await calculateAverageFoodRating(item._id);
+      sum += rating;
       count++;
     }
   }
-  return sum / items.length;
-}
+  if (count === 0) {
+    return undefined;
+  }
+  return sum / count;
+};
 
 calculateAverageFoodRating = async (food) => {
-  const reviews = await Review.find({food: food});
+  const reviews = await Review.find({ food: food });
   if (reviews.length === 0) {
     return undefined;
   }
-  console.log(reviews);
   sum = 0;
   for (review of reviews) {
     sum += review.rating;
   }
   return sum / reviews.length;
-}
+};
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

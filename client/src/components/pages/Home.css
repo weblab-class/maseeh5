@@ -5,6 +5,12 @@
   font-size: var(--l);
   border-radius: var(--s);
   padding: var(--s);
-  margin: 20px 100px;
+  margin: 20px 10%;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 1024px) {
+  .Home-dateCard {
+    font-size: 2.5rem;
+  }
 }
