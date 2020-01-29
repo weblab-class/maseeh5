@@ -9,7 +9,7 @@ import "./VenueCard.css";
  * VenueCard is a component for displaying the information for a single venue.
  *
  * Proptypes
- * @param {VenueObject} venue
+ * @param {Object} venue
  */
 class VenueCard extends Component {
   constructor(props) {
@@ -18,8 +18,8 @@ class VenueCard extends Component {
   }
 
   componentDidMount() {
-    get("/api/reviews").then((reviews) => {
-      this.setState({ active: reviews.length > 0 });
+    get("/api/foods", { venue_id: this.props.venue._id }).then((foods) => {
+      this.setState({ active: foods.length > 0 });
     });
   }
 

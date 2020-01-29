@@ -30,7 +30,7 @@
   font-size: var(--m);
   padding: var(--s) var(--l);
   border: 0;
-  background-color: var(--darkgray);
+  background-color: var(--medgray);
   color: var(--white);
   margin: 10px 20px;
 }
