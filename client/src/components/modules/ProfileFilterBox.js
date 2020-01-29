@@ -55,6 +55,9 @@ class ProfileFilterBox extends Component {
             <option value="venue">Dining Hall</option>
           </select>
         </div>
+        <button className="FilterBox-reset u-pointer" onClick={this.props.reset}>
+          Reset
+        </button>
       </div>
     );
   }

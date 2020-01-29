@@ -54,6 +54,14 @@ class Profile extends Component {
     this.setState({ orderBy: value });
   };
 
+  reset = () => {
+    this.setState({
+      filterRating: 0,
+      search: "",
+      orderBy: "date",
+    });
+  };
+
   render() {
     if (!this.state.user) {
       return <div>Loading...</div>;
@@ -79,6 +87,7 @@ class Profile extends Component {
               updateRating={this.updateRating}
               updateSearch={this.updateSearch}
               updateOrderBy={this.updateOrderBy}
+              reset={this.reset}
             />
           </div>
           {/* <hr className="Profile-line" /> */}
