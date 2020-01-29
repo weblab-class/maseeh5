@@ -51,7 +51,7 @@ class ProfileFilterBox extends Component {
           >
             <option value="date">Date</option>
             <option value="rating">Rating</option>
-            <option value="food">Food</option>
+            <option value="food">Food (A-Z)</option>
             <option value="venue">Dining Hall</option>
           </select>
         </div>
