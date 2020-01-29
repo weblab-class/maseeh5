@@ -32,7 +32,7 @@ class ProfileFilterBox extends Component {
       <div className="ProfileFilterBox-card u-textCenter">
         <div className="ProfileFilterBox-title">Filter</div>
         <div className="ProfileFilterBox-rating">
-          <div>Minimum Rating:</div>
+          <div className="ProfileFilterBox-minReview">Minimum Rating:</div>
           <Rating updateRating={this.props.updateRating} rating={this.props.rating} />
         </div>
         <input
@@ -55,7 +55,7 @@ class ProfileFilterBox extends Component {
             <option value="venue">Dining Hall (A-Z)</option>
           </select>
         </div>
-        <button className="FilterBox-reset u-pointer" onClick={this.props.reset}>
+        <button className="ProfileFilterBox-reset u-pointer" onClick={this.props.reset}>
           Reset
         </button>
       </div>

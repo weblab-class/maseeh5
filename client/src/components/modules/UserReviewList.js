@@ -40,6 +40,7 @@ class UserReviewList extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (
+      this.props.user !== prevProps.user ||
       this.props.search !== prevProps.search ||
       this.props.filterRating !== prevProps.filterRating ||
       this.props.orderBy !== prevProps.orderBy
@@ -51,10 +52,10 @@ class UserReviewList extends Component {
   render() {
     // reviews not yet loaded
     if (!this.state.reviews) {
-      return <div classname="UserReviewList-pageLoading">Loading...</div>;
+      return <div className="UserReviewList-pageLoading">Loading...</div>;
     }
     return (
-      <div>
+      <div className="UserReviewList-noReviews">
         {this.state.reviews.length
           ? this.state.reviews.map((review) => (
               <UserReview

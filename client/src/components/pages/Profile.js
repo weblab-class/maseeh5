@@ -64,12 +64,12 @@ class Profile extends Component {
 
   render() {
     if (!this.state.user) {
-      return <div>Loading...</div>;
+      return <div className="Profile-loading">Loading...</div>;
     }
     return (
       <>
         <Navbar userId={this.props.userId} handleLogout={this.props.handleLogout} />
-        <div className="u-flex">
+        <div className="u-flex Profile-wrap">
           <div className="Profile-leftColumn">
             <h1 className="Profile-name u-textCenter">{this.state.user.name}</h1>
             <div className="Profile-avatarContainer">

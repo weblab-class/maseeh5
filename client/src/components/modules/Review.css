@@ -3,6 +3,7 @@
   font-family: var(--secondary);
   font-size: var(--m);
   text-decoration: none;
+  margin: 0 5px 0 0;
 }
 
 .Review-userLink:hover {
@@ -25,4 +26,16 @@
 
 .Review-date {
   font-style: italic;
+}
+
+@media (max-width: 1024px) {
+  .Review-content {
+    font-size: 2rem;
+  }
+  .Review-userLink {
+    font-size: 2rem;
+  }
+  .Review-container {
+    font-size: 2rem;
+  }
 }
