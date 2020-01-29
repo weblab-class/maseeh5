@@ -53,3 +53,12 @@
   font-family: var(--primaryFont);
   display: inline-block;
 }
+
+.FilterBox-reset {
+  font-size: var(--m);
+  padding: var(--s) var(--l);
+  border: 0;
+  background-color: var(--secondary);
+  color: var(--white);
+  margin: 10px 20px;
+}

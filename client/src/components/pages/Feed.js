@@ -40,6 +40,10 @@ class Feed extends Component {
     this.setState({ orderBy: value });
   };
 
+  reset = () => {
+    this.setState({ filterRating: 0, search: "", orderBy: "name" });
+  };
+
   render() {
     return (
       <>
@@ -54,6 +58,7 @@ class Feed extends Component {
               updateRating={this.updateRating}
               updateSearch={this.updateSearch}
               updateOrderBy={this.updateOrderBy}
+              reset={this.reset}
             />
           </div>
           <FoodList
