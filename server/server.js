@@ -143,7 +143,7 @@ const scrapeMenu = async () => {
       await food.save();
     }
     const options = {
-      uri: `${BASE_URL}/cafe/${venue.internal_name}/2020-02-03/`,
+      uri: `${BASE_URL}/cafe/${venue.internal_name}/2020-02-03/`, // this is hardcoded for demonstration purposes
       transform: (body) => cheerio.load(body),
     };
     const $ = await request(options);
@@ -173,4 +173,4 @@ setInterval(async () => {
   if (changed) {
     await scrapeMenu();
   }
-}, 1000 * 60); // Scrape the website every minute.
+}, 1000 * 60); // scrape the website every minute
