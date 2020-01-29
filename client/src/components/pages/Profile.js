@@ -25,11 +25,21 @@ class Profile extends Component {
     };
   }
 
-  componentDidMount() {
-    document.title = "Profile Page";
-    get("/api/user", { user_id: this.props.profileId }).then((user) =>
+  fetchUser = () => {
+    get(`/api/user`, { user_id: this.props.profileId }).then((user) =>
       this.setState({ user: user })
     );
+  };
+
+  componentDidMount() {
+    document.title = "Profile Page";
+    this.fetchUser();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.profileId !== prevProps.profileId) {
+      this.fetchUser();
+    }
   }
 
   updateRating = (value) => {
@@ -44,6 +54,14 @@ class Profile extends Component {
     this.setState({ orderBy: value });
   };
 
+  reset = () => {
+    this.setState({
+      filterRating: 0,
+      search: "",
+      orderBy: "date",
+    });
+  };
+
   render() {
     if (!this.state.user) {
       return <div>Loading...</div>;
@@ -51,7 +69,7 @@ class Profile extends Component {
     return (
       <>
         <Navbar userId={this.props.userId} handleLogout={this.props.handleLogout} />
-        <div className="u-flex">
+        <div className="u-flex Profile-wrap">
           <div className="Profile-leftColumn">
             <h1 className="Profile-name u-textCenter">{this.state.user.name}</h1>
             <div className="Profile-avatarContainer">
@@ -69,9 +87,9 @@ class Profile extends Component {
               updateRating={this.updateRating}
               updateSearch={this.updateSearch}
               updateOrderBy={this.updateOrderBy}
+              reset={this.reset}
             />
           </div>
-          {/* <hr className="Profile-line" /> */}
           <div className="u-flex-justifyCenter Profile-reviews">
             <div className="Profile-subContainer u-textCenter">
               <h4 className="Profile-subTitle">Reviews</h4>

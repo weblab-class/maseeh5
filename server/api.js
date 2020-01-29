@@ -98,7 +98,15 @@ router.get("/foods", (req, res) => {
           foods = foods.filter((food) => food.rating >= req.query.min_rating);
         }
         if (req.query.sort_by === "rating") {
-          foods.sort((food1, food2) => food2.rating - food1.rating);
+          foods.sort((food1, food2) =>
+            food2.rating && food1.rating
+              ? food2.rating - food1.rating
+              : food2.rating
+              ? 1
+              : food1.rating
+              ? -1
+              : 0
+          );
         }
         res.send(foods);
       })
@@ -137,15 +145,19 @@ router.get("/reviews", (req, res) => {
     query.$text = { $search: req.query.search };
   }
   const sort = !req.query.sort_by || req.query.sort_by === "date" ? { timestamp: -1 } : {};
+  const foodOptions = req.query.sort_by === "food" ? { sort: { name: 1 } } : {};
+  const foodQuery = req.query.search ? { $text: { $search: req.query.search } } : {};
+  const venueOptions = req.query.sort_by === "venue" ? { sort: { name: 1 } } : {};
   Review.find(query)
     .sort(sort)
     .populate("creator")
     .populate({
       path: "food",
-      options: req.query.sort_by === "food" ? { sort: { name: 1 } } : {},
+      match: foodQuery,
+      options: foodOptions,
       populate: {
         path: "venue",
-        options: req.query.sort_by === "venue" ? { sort: { name: 1 } } : {},
+        options: venueOptions,
       },
     })
     .then((reviews) => {

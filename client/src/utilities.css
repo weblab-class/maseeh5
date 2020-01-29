@@ -48,6 +48,13 @@ button {
   border-radius: var(--s);
 }
 
+button:focus,
+textarea:focus,
+input:focus,
+select:focus {
+  outline: none;
+}
+
 form {
   flex-grow: 1;
 }

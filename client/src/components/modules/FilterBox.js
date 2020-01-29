@@ -13,6 +13,7 @@ import "./FilterBox.css";
  * @param {Function} updateRating
  * @param {Function} updateSearch
  * @param {Function} updateOrderBy
+ * @param {Function} reset
  */
 class FilterBox extends Component {
   constructor(props) {
@@ -49,10 +50,13 @@ class FilterBox extends Component {
             value={this.props.orderBy}
             onChange={this.handleSelect}
           >
-            <option value="name">Name</option>
+            <option value="name">Food (A-Z)</option>
             <option value="rating">Rating</option>
           </select>
         </div>
+        <button className="FilterBox-reset u-pointer" onClick={this.props.reset}>
+          Reset
+        </button>
       </div>
     );
   }

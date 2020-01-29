@@ -36,6 +36,7 @@ class FoodList extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (
+      this.props.venueId !== prevProps.venueId ||
       this.props.search !== prevProps.search ||
       this.props.filterRating !== prevProps.filterRating ||
       this.props.orderBy !== prevProps.orderBy
@@ -45,6 +46,7 @@ class FoodList extends Component {
   }
 
   render() {
+    // food items not yet loaded
     if (!this.state.foodItems) {
       return <div className="FoodList-pageLoading">Loading...</div>;
     }

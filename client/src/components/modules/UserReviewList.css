@@ -1,0 +1,5 @@
+.UserReviewList-pageLoading {
+  font-family: var(--secondaryFont);
+  font-size: var(--m);
+  color: var(--secondary);
+}

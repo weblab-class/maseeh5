@@ -1,15 +1,12 @@
 .Profile-avatarContainer {
-  padding: 0 0 0 20px;
   margin: 0 0 25px 0;
 }
 
 .Profile-avatar {
   /* make it responsive */
   width: 100px;
-  height: 100px;
+  padding-top: 100px;
   display: block;
-  /* div height to be the same as width*/
-  /* padding-top: 50%; */
 
   /* make it a circle */
   border-radius: 50%;
@@ -24,10 +21,6 @@
 
   /* it is optional, for making this div centered in parent*/
   margin: 0 auto;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
 }
 
 .Profile-name {
@@ -67,4 +60,20 @@
 
 .Profile-leftColumn {
   margin: 10px 15px 0 30px;
+}
+
+.Profile-wrap {
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1024px) {
+  .Profile-name {
+    font-size: 2rem;
+  }
+  .Profile-leftColumn {
+    width: 100%;
+  }
+  .Profile-reviews {
+    width: 100%;
+  }
 }

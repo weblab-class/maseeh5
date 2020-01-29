@@ -25,7 +25,7 @@ class VenueSelector extends Component {
   }
 
   handleSelect = (event) => {
-    navigate(`/feed/${event.target.value}`).then(() => window.location.reload());
+    navigate(`/feed/${event.target.value}`);
   };
 
   render() {

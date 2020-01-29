@@ -15,7 +15,7 @@ class UserReviewList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviews: [],
+      reviews: undefined,
     };
   }
 
@@ -40,6 +40,7 @@ class UserReviewList extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (
+      this.props.user !== prevProps.user ||
       this.props.search !== prevProps.search ||
       this.props.filterRating !== prevProps.filterRating ||
       this.props.orderBy !== prevProps.orderBy
@@ -49,18 +50,24 @@ class UserReviewList extends Component {
   }
 
   render() {
+    // reviews not yet loaded
+    if (!this.state.reviews) {
+      return <div className="UserReviewList-pageLoading">Loading...</div>;
+    }
     return (
       <div>
-        {this.state.reviews.map((review) => (
-          <UserReview
-            key={review._id}
-            rating={review.rating}
-            venue={review.food.venue.name}
-            foodItem={review.food.name}
-            date={review.timestamp}
-            content={review.content}
-          />
-        ))}
+        {this.state.reviews.length
+          ? this.state.reviews.map((review) => (
+              <UserReview
+                key={review._id}
+                rating={review.rating}
+                venue={review.food.venue.name}
+                foodItem={review.food.name}
+                date={review.timestamp}
+                content={review.content}
+              />
+            ))
+          : "No reviews match your search!"}
       </div>
     );
   }
