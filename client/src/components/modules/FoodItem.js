@@ -56,7 +56,7 @@ class FoodItem extends Component {
       <div className="FoodItem-largeContainer">
         <div className="FoodItem-container u-pointer u-flex-between" onClick={this.toggleExpanded}>
           <Rating rating={this.state.foodRating} />
-          <div className="u-bold u-flex-justifyCenter">{this.props.name}</div>
+          <div className="u-bold u-flex-justifyCenter FoodItem-name">{this.props.name}</div>
           <div className="FoodItem-empty" />
         </div>
 

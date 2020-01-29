@@ -48,3 +48,19 @@
 .ProfileFilterBox-orderBy {
   margin: var(--s) 0;
 }
+
+@media (max-width: 1024px) {
+  .ProfileFilterBox-card {
+    width: 100%;
+  }
+  .ProfileFilterBox-search {
+    font-size: 2rem;
+    height: auto;
+    width: auto;
+  }
+  .ProfileFilterBox-dropdown {
+    font-size: 2rem;
+    height: auto;
+    width: 300px;
+  }
+}

@@ -61,3 +61,19 @@
 .Profile-leftColumn {
   margin: 10px 15px 0 30px;
 }
+
+.Profile-wrap {
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1024px) {
+  .Profile-name {
+    font-size: 2rem;
+  }
+  .Profile-leftColumn {
+    width: 100%;
+  }
+  .Profile-reviews {
+    width: 100%;
+  }
+}

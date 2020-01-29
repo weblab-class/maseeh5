@@ -48,3 +48,15 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+@media (max-width: 1024px) {
+  .LoginCard-subtitle {
+    font-size: 2rem;
+  }
+  .LoginCard-loginButton {
+    font-size: 2rem;
+  }
+  .LoginCard-background {
+    margin: 50% 15%;
+  }
+}
