@@ -64,7 +64,7 @@ class Profile extends Component {
 
   render() {
     if (!this.state.user) {
-      return <div>Loading...</div>;
+      return <div className="Profile-loading">Loading...</div>;
     }
     return (
       <>

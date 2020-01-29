@@ -54,7 +54,7 @@ class UserReviewList extends Component {
       return <div className="UserReviewList-pageLoading">Loading...</div>;
     }
     return (
-      <div>
+      <div className="UserReviewList-noReviews">
         {this.state.reviews.length
           ? this.state.reviews.map((review) => (
               <UserReview

@@ -36,6 +36,7 @@
 }
 
 body {
+  color: var(--secondary);
   margin: 0;
   padding: 0;
   font-family: "Roboto Mono", sans-serif;
@@ -113,4 +114,10 @@ form {
 
 .u-underline {
   text-decoration: underline;
+}
+
+@media (max-width: 1024px) {
+  body {
+    font-size: 2rem;
+  }
 }
