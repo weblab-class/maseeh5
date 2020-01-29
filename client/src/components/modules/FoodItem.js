@@ -68,7 +68,7 @@ class FoodItem extends Component {
         {/* displays add review link when not adding review */}
         {this.state.expanded && !this.state.addingReview && (
           <div className="FoodItem-addReview u-textCenter u-pointer" onClick={this.toggleAdd}>
-            Add Review
+            + Add Review
           </div>
         )}
 
